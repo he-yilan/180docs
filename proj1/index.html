@@ -532,6 +532,34 @@
     <p> However, for <span class="code">church.tif</span>, <span class="code">harvesters.tif</span>, and <span class="code">lady.tif</span>, using fixed-percentage cropping with either <span class="code">pyramid_align</span> or <span class="code">edge_align</span> led to better alignments, though sacrificing some of the original visual data along the borders. </p>
 
     <!-- TODO: edge images with edge crop, per crop -->
+    <table>
+        <tr>
+            <td>
+                <div class="center">
+                    <img src="images/pyr_align_per_crop/out_church.jpg" class="single-image"/> <br>
+                    <span>church.tif aligned using multi-scale alignment (Figure 11). <br> G: $(-2665, -3050)$ <br> R: $(-2632, -3058)$</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/pyr_align_edge_crop/out_church.jpg" class="single-image"/> <br>
+                    <span>church.tif aligned using multi-scale alignment after automatic cropping (Figure 25). <br> G: $(-9497, -10563)$ <br> R: $(-9441, -10599)$</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/pyr_align_edge_crop/out_church.jpg" class="single-image"/> <br>
+                    <span>church.tif aligned using multi-scale alignment after automatic cropping (Figure 25). <br> G: $(-9497, -10563)$ <br> R: $(-9441, -10599)$</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/edge_align_edge_crop/out_church.jpg" class="single-image"/> <br>
+                    <span>church.tif aligned using edge-detection alignment after automatic cropping (Figure 39). <br> G: $(-9473, -10561)$ <br> R: $(-9440, -10603)$</span>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <br>
