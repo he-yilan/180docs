@@ -97,9 +97,17 @@
     <div class="subheader_left">Bells & Whistles</div>
 
     <h3>Automatic Cropping</h3>
+    <p>Rather than cropping images using a predefined percentage, automatic cropping was implemented to use edge detection to remove borders while preserving as much of the original image content as possible. For each color channel, an edge map is generated. First, contrast is increased and Gaussian blur is applied to reduce noise. Then <span class="code">skimage.filters.sobel</span> is used to detect the edges in the image. Given the edge maps, <span class="code">cv2.findContours</span> finds the boundaries of the edges, and <span class="code">cv2.boundingRect</span> computes the smallest bounding box that fully contains each contour. For all three channels, the minimum height and width of the bounding box is taken and used as the final dimensions to crop the images.</p>
 
+    <p>The fully colored result is a larger image, closer to the original size, compared to the images produced with the initial strategy of using a fixed percentage to crop the borders. While the resulting image is larger, this comes at the cost of a less accurate alignment for some of the files. This is hypothesized to be due to the inclusion of more noisy data on the borders of the image along the black outlines. On the other hand, the initial method of cropping $8\%$ of the height and width focuses on the more important data well within the borders which produces a noticeably better alignment in some cases. To mitigate these issues with automatic cropping, edge-detection alignment was explored as a potential solution.</p>
+
+    <h3>Edge-detection Alignment</h3>
+    <p>Rather than RGB similarity, in the function <span class="code">edge_align</span>, alignment of the channels was done based on the edges. After cropping, the edge maps of the channels were generated using <span class="code">skimage.filters.sobel</span>. Then, <span class="code">pyramid_align</span> was run on these edge maps to determine the optimal offset. The channels were shifted using these offsets, and then stacked to produce the final color image.</p>
+
+    <p>In conclusion, edge-detection alignment used in conjunction with automatic cropping produced, on average, the highest quality results, preserving the original image content as much as possible. However, for <span class="code">church.tif</span>, <span class="code">harvesters.tif</span>, and <span class="code">lady.tif</span>, using fixed-percentage cropping with either <span class="code">pyramid_align</span> or <span class="code">edge_align</span> led to better alignments, though sacrificing some of the original visual data along the borders. </p>
 </div>
 
+<br>
 
 </body>
 </html>
