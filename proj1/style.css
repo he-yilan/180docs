@@ -66,6 +66,7 @@ body {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     margin-left: 3rem;
+    margin-top: 2rem;
 }
 
 .code {
@@ -84,4 +85,21 @@ a.anchor {
     font-size: 1.12rem;
     line-height: 1.5rem;
     margin-right: 5rem;
+}
+
+.single-image {
+    width: 80%;
+    max-width: 40rem;
+    min-width: 20rem;
+}
+
+.center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    margin: 0px auto;
 }
