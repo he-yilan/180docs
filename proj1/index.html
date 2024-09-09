@@ -82,8 +82,6 @@
     <div class="subheader_left">Single-scale Alignment</div>
     <p>In the naive solution, <span class="code">align_channel</span>, aligns two channels by searching over a window of possible displacements (the range is set to [-15, 15] for both $x$ and $y$ by default). The images are first cropped by a percentage ($8\%$ of the height and width by default). Then, for each possible displacement, the reference channel is kept constant while the other is shifted by the displacement using <span class="code">np.roll</span>, and the SSD is calculated. Throughout this process, a running minimum SSD is updated, and in the end, the optimal displacement is applied.</p>
 
-    <!-- TODO: naive images with per crop -->
-
     <h4>Low-quality Images (JPG)</h4>
     <table><tr>
         <td>
@@ -138,7 +136,6 @@
     <div class="subheader_left">Multi-scale Alignment</div>
     <p>While single-scale alignment performs well for small images, it is too expensive for large images. To handle large images, multi-scale alignment was implemented using an image pyramid in the function <span class="code">pyramid_align</span>. For two channels to be aligned, the images are first cropped by a predetermined percentage as in single-scale alignment, and then continually resized by $1/2$ $10$ times or until they reach the base case ($size < 32$); each of these resized images is then stored in the pyramid along with the original. Iterating from coarsest to finest resolution, the images are aligned using single-scale alignment which outputs an offset. The offsets from each level in the pyramid are accumulated into one final offset, accounting for the different scaling factors of each image.</p>
 
-    <!-- TODO: pyramid images with per crop -->
     <h4>Low-quality Images (JPG)</h4>
     <table><tr>
         <td>
@@ -481,8 +478,6 @@
     </table>
 
     <p>In conclusion, edge-detection alignment used in conjunction with automatic cropping produced, on average, the highest quality results, preserving the original image content as much as possible.</p>
-
-    <!-- TODO: insert cathedral and train -->
 
     <table>
         <tr>
