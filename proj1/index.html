@@ -80,6 +80,54 @@
     <a class="anchor" id="single"></a>
     <div class="subheader_left">Single-scale Alignment</div>
     <p>In the naive solution, <span class="code">align_channel</span>, aligns two channels by searching over a window of possible displacements (the range is set to [-15, 15] for both $x$ and $y$ by default). The images are first cropped by a percentage ($8\%$ of the height and width by default). Then, for each possible displacement, the reference channel is kept constant while the other is shifted by the displacement using <span class="code">np.roll</span>, and the SSD is calculated. Throughout this process, a running minimum SSD is updated, and in the end, the optimal displacement is applied.</p>
+
+    <!-- TODO: naive images with per crop -->
+
+    <h3>Low-quality Images (JPG)</h3>
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_cathedral.jpg" class="single-image"/> <br>
+                <span>Figure 1: cathedral.jpg aligned using single-scale alignment. <br> G: $(1, -1)$ <br> R: $(7, -1)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_monastery.jpg" class="single-image"/> <br>
+                <span>Figure 2: monastery.jpg aligned using single-scale alignment. <br> G: $(-6, 0)$ <br> R: $(9, 1)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_tobolsk.jpg" class="single-image"/> <br>
+                <span>Figure 3: tobolsk.jpg aligned using single-scale alignment. <br> G: $(3, 2)$ <br> R: $(6, 3)$</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <h3>High-quality Images (TIF)</h3>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_emir.jpg" class="single-image"/> <br>
+                <span>Figure 4: emir.tif aligned using single-scale alignment. <br> G: $(-3, 7)$ <br> R: $(-15, 15)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_icon.jpg" class="single-image"/> <br>
+                <span>Figure 5: icon.tif aligned using single-scale alignment. <br> G: $(15, 15)$ <br> R: $(-15, -7)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/naive_align_per_crop/out_melons.jpg" class="single-image"/> <br>
+                <span>Figure 6: melons.tif aligned using single-scale alignment. <br> G: $(15, -4)$ <br> R: $(15, -8)$</span>
+            </div>
+        </td>
+    </tr></table>
+
 </div>
 
 <br>
@@ -88,6 +136,31 @@
     <a class="anchor" id="multi"></a>
     <div class="subheader_left">Multi-scale Alignment</div>
     <p>While single-scale alignment performs well for small images, it is too expensive for large images. To handle large images, multi-scale alignment was implemented using an image pyramid in the function <span class="code">pyramid_align</span>. For two channels to be aligned, the images are first cropped by a predetermined percentage as in single-scale alignment, and then continually resized by $1/2$ until they reach the base case ($size < 32$); each of these resized images is then stored in the pyramid along with the original. Iterating from coarsest to finest resolution, the images are aligned using single-scale alignment which outputs an offset. The offsets from each level in the pyramid are accumulated into one final offset, accounting for the different scaling factors of each image.</p>
+
+    <!-- TODO: pyramid images with per crop -->
+    <h3>Low-quality Images (JPG)</h3>
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/pyr_align_per_crop/out_cathedral.jpg" class="single-image"/> <br>
+                <span>Figure 7: cathedral.jpg aligned using multi-scale alignment. <br> G: $(-282, -326)$ <br> R: $(-275, -325)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/pyr_align_per_crop/out_monastery.jpg" class="single-image"/> <br>
+                <span>Figure 8: monastery.jpg aligned using multi-scale alignment. <br> G: $(-290, -327)$ <br> R: $(-284, -327)$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/pyr_align_per_crop/out_tobolsk.jpg" class="single-image"/> <br>
+                <span>Figure 9: tobolsk.jpg aligned using multi-scale alignment. <br> G: $(-284, -332)$ <br> R: $(-281, -331)$</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <h3>High-quality Images (TIF)</h3>
 </div>
 
 <br>
@@ -101,10 +174,14 @@
 
     <p>The fully colored result is a larger image, closer to the original size, compared to the images produced with the initial strategy of using a fixed percentage to crop the borders. While the resulting image is larger, this comes at the cost of a less accurate alignment for some of the files. This is hypothesized to be due to the inclusion of more noisy data on the borders of the image along the black outlines. On the other hand, the initial method of cropping $8\%$ of the height and width focuses on the more important data well within the borders which produces a noticeably better alignment in some cases. To mitigate these issues with automatic cropping, edge-detection alignment was explored as a potential solution.</p>
 
+    <!-- TODO: pyramid images with edge crop -->
+
     <h3>Edge-detection Alignment</h3>
     <p>Rather than RGB similarity, in the function <span class="code">edge_align</span>, alignment of the channels was done based on the edges. After cropping, the edge maps of the channels were generated using <span class="code">skimage.filters.sobel</span>. Then, <span class="code">pyramid_align</span> was run on these edge maps to determine the optimal offset. The channels were shifted using these offsets, and then stacked to produce the final color image.</p>
 
     <p>In conclusion, edge-detection alignment used in conjunction with automatic cropping produced, on average, the highest quality results, preserving the original image content as much as possible. However, for <span class="code">church.tif</span>, <span class="code">harvesters.tif</span>, and <span class="code">lady.tif</span>, using fixed-percentage cropping with either <span class="code">pyramid_align</span> or <span class="code">edge_align</span> led to better alignments, though sacrificing some of the original visual data along the borders. </p>
+
+    <!-- TODO: edge images with edge crop, per crop -->
 </div>
 
 <br>
