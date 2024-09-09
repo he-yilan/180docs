@@ -110,3 +110,9 @@ a.anchor {
 table {
     margin: 0px auto;
 }
+
+@media print {
+    .menu, .menu * {
+        display: none !important;
+    }
+}
