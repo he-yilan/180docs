@@ -64,8 +64,8 @@ body {
 .subheader_left {
     text-align: left;
     font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 1rem;
-    margin-left: 3rem;
     margin-top: 2rem;
 }
 
@@ -102,4 +102,8 @@ a.anchor {
 
 table {
     margin: 0px auto;
+}
+
+h3 {
+    font-weight: normal;
 }
