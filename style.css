@@ -39,11 +39,20 @@ body {
     /* font-weight: bold; */
 }
 
+.menu li a:hover {
+    color: blue;
+}
+
+.menu li a:hover::before {
+    transform: scaleX(1);
+}
+
 .header {
     text-align: center;
     font-weight: bold;
     margin-bottom: 1rem;
     font-size: 2rem;
+    margin-top: 2rem;
 }
 
 .subheader {
