@@ -69,7 +69,7 @@ body {
 }
 
 .code {
-    font-family: monospace;
+    color: green;
 }
 
 a.anchor {
@@ -81,5 +81,7 @@ a.anchor {
 
 .content-item {
     margin-left: 5rem;
+    font-size: 1.12rem;
+    line-height: 1.5rem;
+    margin-right: 5rem;
 }
-
