@@ -42,7 +42,7 @@
 <table><tr>
     <td>
         <div class="center">
-<!--            <img src="images/out_luna_nightcity_test.jpg" class="single-image"/>-->
+            <img src="images/blend/out_luna_nightcity.jpg" class="single-image"/>
         </div>
     </td>
 </tr></table>
@@ -449,10 +449,11 @@
     $$L_i = G_i - G_{i + 1}$$
     <p>This computation effectively applies a band-pass filter to the image, allowing important details to be isolated in each band. Having built Gaussian and Laplacian stacks for <span class="code">im1</span> and <span class="code">im2</span>, the stacks can then be utilized for multiresolutional blending.</p>
 
+    <p>Given the input images <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, the images are first converted to grayscale (by taking only one of the color channels) and then filtered to build the Gaussian and Laplacian stacks.</p>
     <table><tr>
         <td>
             <div class="center">
-                <img src="images/hybrid/DerekPicture.jpg" class="single-image"/> <br>
+                <img src="images/blend/" class="single-image"/> <br>
                 <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span>.</span>
             </div>
         </td>
