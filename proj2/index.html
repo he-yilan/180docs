@@ -308,7 +308,7 @@
         </td>
         <td>
             <div class="center">
-                <img src="images/hybrid//hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
+                <img src="images/hybrid/hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
                 <span>Figure X: Colored hybrid image of Derek & Nutmeg.</span>
             </div>
         </td>
@@ -445,6 +445,36 @@
 <div class="content-item">
     <a class="anchor" id="stacks"></a>
     <div class="subheader_left">Gaussian & Laplacian Stacks</div>
+    <p>Building off of the techniques to devise low-pass and high-pass filters, band-pass filters can be created to blend images smoothly. In order to blend one image, <span class="code">im1</span>, with another, <span class="code">im2</span>, Gaussian and Laplacian stacks are implemented. As opposed to a Gaussian pyramid, images in a Gaussian stack are not downsampled; instead, the Gaussian filter is successively applied at each level, preserving the image dimensions. Therefore, each successive level in the Gaussian stack stores increasingly low frequencies. The Gaussian stack is then used to build the Laplacian stack. Each level $i$ in the Laplacian stack $L$ is computed from images in the Gaussian stack $G$ as follows:</p>
+    $$L_i = G_i - G_{i + 1}$$
+    <p>This computation effectively applies a band-pass filter to the image, allowing important details to be isolated in each band. Having built Gaussian and Laplacian stacks for <span class="code">im1</span> and <span class="code">im2</span>, the stacks can then be utilized for multiresolutional blending.</p>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/DerekPicture.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/nutmeg.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">nutmeg.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_dereknutmeg_gray.jpg" class="single-image"/> <br>
+                <span>Figure X: Grayscale hybrid image of Derek & Nutmeg.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
+                <span>Figure X: Colored hybrid image of Derek & Nutmeg.</span>
+            </div>
+        </td>
+    </tr></table>
 
 </div>
 
