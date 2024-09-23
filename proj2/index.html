@@ -186,6 +186,41 @@
     <a class="anchor" id="sharp"></a>
     <div class="subheader_left">Image Sharpening</div>
 
+    <p>In order to sharpen an image $f$, an unsharp mask filter can be used. By convolving with a Gaussian filter, the image is blurred to retain the image's low frequencies. Thus, to extract the high frequencies, the blurred image is extracted from the original image. The high frequencies are then multiplied by the sharpening factor $\alpha$ and added back to the original image</p>
+
+    $$f_{\text{sharp}} = f + \alpha (f - f * g) = (1 + \alpha) f - \alpha f * g = f * ((1 + \alpha)e - \alpha g)$$
+
+    <ul>
+        <li>$f =$ original image</li>
+        <li>$f_{\text{sharp}} =$ sharpened image</li>
+        <li>$g =$ Gaussian filter</li>
+        <li>$\alpha =$ sharpening factor that controls the strength of the high-frequency details added back to the original image</li>
+        <li>$e =$ unit impulse filter </li>
+    </ul>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/sharpen/taj.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">taj.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/sharpen/out_taj2.jpg" class="single-image"/> <br>
+                <span>Figure X: Sharpened <span class="code">taj.jpg</span> <br> with $\alpha=2$.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/sharpen/out_taj5.jpg" class="single-image"/> <br>
+                <span>Figure X: Sharpened <span class="code">taj.jpg</span> <br> with $\alpha=5$.</span>
+            </div>
+        </td>
+    </tr></table>
+
+
+
 </div>
 
 <br>
