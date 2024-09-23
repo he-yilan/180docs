@@ -244,6 +244,8 @@
 
     <p>Increasing $\alpha$ strengthens the high-frequency details in the sharpened image.</p>
 
+    <h4>Re-sharpening a Blurred Image</h4>
+
     <p>In the following process, the original image of my cat Luna <span class="code">luna_small.jpg</span> was first blurred and then "restored" by applying the unsharp mask filter. </p>
 
     <table><tr>
@@ -280,6 +282,66 @@
 <div class="content-item">
     <a class="anchor" id="hybrid"></a>
     <div class="subheader_left">Hybrid Images</div>
+
+    <p>High-pass and low-pass filters can be used to create hybrid images by combining the low-frequency components of one image, <span class="code">lo_im</span>, with the high-frequency components of another, <span class="code">hi_im</span>. When overlaid, <span class="code">hi_im</span> is prominent when viewed up close, while the lower frequencies from <span class="code">lo_im</span> dominate from a distance, as low-frequency features are more easily perceived at a longer distance.</p>
+
+    <h4>Derek & Nutmeg</h4>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/DerekPicture.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/nutmeg.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">nutmeg.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_dereknutmeg_gray.jpg" class="single-image"/> <br>
+                <span>Figure X: Grayscale hybrid image of Derek & Nutmeg.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid//hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
+                <span>Figure X: Colored hybrid image of Derek & Nutmeg.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <h4>Real-life Elana & Elana as a drawing</h4>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/elana_pensive_real.jpg" class="single-image"/> <br>
+                <span>Figure X: Elana at La Note.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/elana_pensive_drawing.jpg" class="single-image"/> <br>
+                <span>Figure X: Elana's self-portrait drawn using Procreate.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_elana_gray.jpg" class="single-image"/> <br>
+                <span>Figure X: Grayscale hybrid image of Elana.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_elana.jpg" class="single-image"/> <br>
+                <span>Figure X: Colored hybrid image of Elana.</span>
+            </div>
+        </td>
+    </tr></table>
 
 </div>
 
