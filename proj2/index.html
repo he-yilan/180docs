@@ -450,32 +450,116 @@
     <p>This computation effectively applies a band-pass filter to the image, allowing important details to be isolated in each band. Having built Gaussian and Laplacian stacks for <span class="code">im1</span> and <span class="code">im2</span>, the stacks can then be utilized for multiresolutional blending.</p>
 
     <p>Given the input images <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, the images are first converted to grayscale (by taking only one of the color channels) and then filtered to build the Gaussian and Laplacian stacks.</p>
+    <table>
+        <tr>
+        <td>
+            <div class="center">
+                <img src="images/blend/apple.jpeg" class="single-image"/> <br>
+                <span>Figure X: Original image <span class="code">apple.jpeg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/lstack0/apple_lstack_level15.jpg" class="single-image"/> <br>
+                <span>Figure X: Grayscale <span class="code">apple.jpeg</span>.</span>
+            </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <div class="center">
+                <img src="images/blend/lstack0/apple_lstack_level0.jpg" class="single-image"/> <br>
+                <span>Figure X: <span class="code">apple.jpeg</span> at level 0 in the Laplacian stack.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/lstack0/apple_lstack_level4.jpg" class="single-image"/> <br>
+                <span>Figure X: <span class="code">apple.jpeg</span> at level 4 in the Laplacian stack.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/lstack0/apple_lstack_level8.jpg" class="single-image"/> <br>
+                <span>Figure X: <span class="code">apple.jpeg</span> at level 8 in the Laplacian stack.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/lstack0/apple_lstack_level12.jpg" class="single-image"/> <br>
+                <span>Figure X: <span class="code">apple.jpeg</span> at level 12 in the Laplacian stack.</span>
+            </div>
+        </td>
+    </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>
+                <div class="center">
+                    <img src="images/blend/orange.jpeg" class="single-image"/> <br>
+                    <span>Figure X: Original image <span class="code">orange.jpeg</span>.</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/blend/lstack0/orange_lstack_level15.jpg" class="single-image"/> <br>
+                    <span>Figure X: Grayscale <span class="code">orange.jpeg</span>.</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="center">
+                    <img src="images/blend/lstack0/orange_lstack_level0.jpg" class="single-image"/> <br>
+                    <span>Figure X: <span class="code">orange.jpeg</span> at level 0 in the Laplacian stack.</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/blend/lstack0/orange_lstack_level4.jpg" class="single-image"/> <br>
+                    <span>Figure X: <span class="code">orange.jpeg</span> at level 4 in the Laplacian stack.</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/blend/lstack0/orange_lstack_level8.jpg" class="single-image"/> <br>
+                    <span>Figure X: <span class="code">orange.jpeg</span> at level 8 in the Laplacian stack.</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/blend/lstack0/orange_lstack_level12.jpg" class="single-image"/> <br>
+                    <span>Figure X: <span class="code">orange.jpeg</span> at level 12 in the Laplacian stack.</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <p>Finally, the blended oraple is achieved:</p>
+
     <table><tr>
         <td>
             <div class="center">
-                <img src="images/blend/" class="single-image"/> <br>
-                <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span>.</span>
+                <img src="images/blend/apple.jpeg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">apple.jpeg</span>.</span>
             </div>
         </td>
         <td>
             <div class="center">
-                <img src="images/hybrid/nutmeg.jpg" class="single-image"/> <br>
-                <span>Figure X: Original image <br> <span class="code">nutmeg.jpg</span>.</span>
+                <img src="images/blend/orange.jpeg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">orange.jpeg</span>.</span>
             </div>
         </td>
         <td>
             <div class="center">
-                <img src="images/hybrid/hybrid_dereknutmeg_gray.jpg" class="single-image"/> <br>
-                <span>Figure X: Grayscale hybrid image of Derek & Nutmeg.</span>
-            </div>
-        </td>
-        <td>
-            <div class="center">
-                <img src="images/hybrid/hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
-                <span>Figure X: Colored hybrid image of Derek & Nutmeg.</span>
+                <img src="images/blend/out_appleorange.jpg" class="single-image"/> <br>
+                <span>Figure X: Oraple.</span>
             </div>
         </td>
     </tr></table>
+
+
 
 </div>
 
