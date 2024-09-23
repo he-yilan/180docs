@@ -51,6 +51,7 @@
 <div class="content-item">
     <a class="anchor" id="overview"></a>
     <div class="subheader_left">Overview</div>
+    <p>This project explores the use of image frequency manipulation to modify images and produce compelling visual effects. Starting from applying filters to blur and sharpen features, we are then able to create hybrid and blended images by combining different frequencies and utilizing Gaussian and Laplacian stacks.  </p>
 </div>
 
 <br>
@@ -58,6 +59,50 @@
 <div class="content-item">
     <a class="anchor" id="finite"></a>
     <div class="subheader_left">Finite Difference Operator</div>
+    <p>An edge detection algorithm was implemented by using the finite difference operators $Dx$ and $Dy$.</p>
+
+    $$ D_x = \begin{bmatrix} 1 & -1 \end{bmatrix}$$
+    $$ D_y = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+    <p>$Dx$ calculates changes in intensity of adjacent pixels in the horizontal direction, while its transpose, $Dy$ calculates changes in the vertical direction. Thus, convolving the image with $Dx$ and $Dy$ produces the partial derivatives in $x$ and $y$ respectively. These partial derivatives can then be combined to compute the gradient magnitude $G_m$ which shows the strength in changes in intensity.</p>
+
+    $$\frac{\partial Img}{\partial x} = Img * D_x $$
+
+    $$\frac{\partial Img}{\partial y} = Img * D_y $$
+
+    $$G_m = \sqrt{(\frac{\partial Img}{\partial x})^2 + (\frac{\partial Img}{\partial y})^2}$$
+
+    <p>This gradient magnitude image is then binarized to produce the edge image.</p>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/cameraman.png" class="single-image"/> <br>
+                <span>Figure X: Original image <span class="code">cameraman.png</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dxderiv.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $x$ derivative.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dyderiv.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $y$ derivative.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_cameraman.jpg" class="single-image"/> <br>
+                <span>Figure X: Binarized edge image with threshold $= 0.25$.</span>
+            </div>
+        </td>
+    </tr></table>
 
 </div>
 
@@ -66,6 +111,72 @@
 <div class="content-item">
     <a class="anchor" id="dog"></a>
     <div class="subheader_left">Derivative of Gaussian (DoG) Filter</div>
+
+    <p>While the finite difference operators are effective in detecting changes in pixel intensity, they can be sensitive to noise. To reduce noise, the function <span class="code">gaussian_blur</span> was created to blur the image using a 2D Gaussian filter. By first blurring the image, and then applying the finite difference operators, smoother results were produced.</p>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dxderiv_g.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $x$ derivative <br> after Gaussian blur.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dyderiv_g.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $y$ derivative <br> after Gaussian blur.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_cameraman_g.jpg" class="single-image"/> <br>
+                <span>Figure X: Binarized edge image with threshold $= 0.1$.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <p>Compared to the initial result without filtering, the filtered edge image has smoother, clearer lines and fewer dots of noise. </p>
+
+    <p>Alternatively, because convolution is commutative, the same effect can also be achieved by using the derivative of the Gaussian (DoG) filter. To this end, the Gaussian kernel was convolved with $Dx$ and $Dy$, and then the image was convolved with $Dx$ and $Dy$ to show the partial derivatives.</p>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dx_dog.jpg" class="single-image"/> <br>
+                <span>Figure X: $D_x$ after convolving with the Gaussian kernel.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dy_dog.jpg" class="single-image"/> <br>
+                <span>Figure X: $D_y$ after convolving with the Gaussian kernel.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dxderiv_dog.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $x$ derivative using the derivative of the Gaussian.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_Dyderiv_g.jpg" class="single-image"/> <br>
+                <span>Figure X: Partial $y$ derivative using the derivative of the Gaussian.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/cameraman/out_cameraman_dog.jpg" class="single-image"/> <br>
+                <span>Figure X: Binarized edge image with threshold $= 0.097$.</span>
+            </div>
+        </td>
+    </tr></table>
 
 </div>
 
@@ -98,10 +209,6 @@
 <div class="content-item">
     <a class="anchor" id="blend"></a>
     <div class="subheader_left">Multiresolutional Blending</div>
-
-</div>
-
-<br>
 
 </div>
 
