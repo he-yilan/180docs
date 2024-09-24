@@ -180,9 +180,8 @@
                 <span>Figure 11: Partial $y$ derivative using the derivative of the Gaussian.</span>
             </div>
         </td>
-    </tr></table>
-
-    <table><tr>
+    </tr>
+    <tr>
         <td>
             <div class="center">
                 <img src="images/cameraman/out_gm_dog.jpg" class="single-image"/> <br>
@@ -265,7 +264,7 @@
 
     <h4>Re-sharpening a Blurred Image</h4>
 
-    <p>In the following process, the original image of my cat Luna <span class="code">luna_small.jpg</span> was first blurred and then "restored" by applying the unsharp mask filter. </p>
+    <p>The image of my cat Luna <span class="code">luna_small.jpg</span> was used to test whether sharpening can fully restore the high frequency details of an image. The original image was first blurred by applying a Gaussian filter. Then, it was sharpened using the unsharp mask filter. As shown in the following images, although the details are stronger, the re-sharpened images lose certain subtleties seen in the original such as the gradients in the shadows and the fine lines in her fur.</p>
 
     <table><tr>
         <td>
@@ -327,7 +326,7 @@
         </td>
         <td>
             <div class="center">
-                <img src="images/hybrid/hybrid_dereknutmeg2.jpg" class="single-image"/> <br>
+                <img src="images/hybrid/hybrid_dereknutmeg.jpg" class="single-image"/> <br>
                 <span>Figure 26: Colored hybrid image of Derek & Nutmeg.</span>
             </div>
         </td>
@@ -387,6 +386,37 @@
             <div class="center">
                 <img src="images/hybrid/hybrid_moto.jpg" class="single-image"/> <br>
                 <span>Figure 35: Colored hybrid image of the motorcycle.</span>
+            </div>
+        </td>
+    </tr></table>
+
+    <h4>Luna & Tiger (Failure Case)</h4>
+
+    <p>Although Luna is a very cute cat, this hybrid image of her and a tiger did not turn out well. Given the input images, these were the best images that could be produced. In this case, the images could not be properly aligned, and the low frequency components overwhelmed the high frequency features. When adding the filtered images together, a weight was multiplied to the low frequency image to lessen its intensity, at the cost of darkening the resulting image. </p>
+
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/luna_yawn.jpg" class="single-image"/> <br>
+                <span>Figure 31: Luna yawning <br>  $r = 30, \sigma=15$.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/tiger_yawn.jpg" class="single-image"/> <br>
+                <span>Figure 32: Tiger yawning <br>  $r = 10, \sigma=3$.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_lunatiger_gray.jpg" class="single-image"/> <br>
+                <span>Figure 33: Grayscale hybrid image of the cats.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/hybrid/hybrid_yawn.jpg" class="single-image"/> <br>
+                <span>Figure 35: Colored hybrid image of the cats.</span>
             </div>
         </td>
     </tr></table>
