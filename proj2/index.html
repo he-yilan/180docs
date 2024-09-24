@@ -140,7 +140,7 @@
 
     <p>Compared to the initial result without filtering, the filtered edge image has smoother, clearer lines and fewer dots of noise. </p>
 
-    <p>Alternatively, because convolution is commutative, the same effect can also be achieved by using the derivative of the Gaussian (DoG) filter. To this end, the Gaussian kernel was convolved with $Dx$ and $Dy$, and then the image was convolved with $Dx$ and $Dy$ to show the partial derivatives.</p>
+    <p>Alternatively, because convolution is commutative, the same effect can also be achieved by using the derivative of the Gaussian (DoG) filter. To this end, the Gaussian kernel was convolved with $Dx$ and $Dy$ (Figure 8 and FIgure 9), and then the image was convolved with $Dx$ and $Dy$ to show the partial derivatives.</p>
 
     <table><tr>
         <td>
@@ -547,7 +547,7 @@
 
     <p>To blend two images seamlessly, the multiresolution spline technique is used. By gently distorting <span class="code">im1</span> and <span class="code">im2</span>, the images can then be joined together in a smooth seam called an <i>image spline</i>. At each band of image frequencies, <i>multiresolutional blending</i> computes this seam between the two images separately, allowing for the gradual blending of features. </p>
 
-    <p>First, a mask is created to control how the two images are combined, defining which areas of each image would be visible in the result. To blend <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, a mask is used to divide the image in half vertically (Figure). </p>
+    <p>First, a mask is created to control how the two images are combined, defining which areas of each image would be visible in the result. To blend <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, a mask is used to divide the image in half vertically (Figure 59). </p>
 
     <p>Finally, the blended oraple is achieved:</p>
 
