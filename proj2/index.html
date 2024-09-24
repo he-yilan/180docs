@@ -291,13 +291,13 @@
         <td>
             <div class="center">
                 <img src="images/hybrid/DerekPicture.jpg" class="single-image"/> <br>
-                <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span>.</span>
+                <span>Figure X: Original image <br> <span class="code">DerekPicture.jpg</span> <br>  $r = 30, \sigma=9$.</span>
             </div>
         </td>
         <td>
             <div class="center">
                 <img src="images/hybrid/nutmeg.jpg" class="single-image"/> <br>
-                <span>Figure X: Original image <br> <span class="code">nutmeg.jpg</span>.</span>
+                <span>Figure X: Original image <br> <span class="code">nutmeg.jpg</span> <br>  $r = 10, \sigma=3$.</span>
             </div>
         </td>
         <td>
@@ -320,13 +320,13 @@
         <td>
             <div class="center">
                 <img src="images/hybrid/elana_pensive_real.jpg" class="single-image"/> <br>
-                <span>Figure X: Elana at La Note.</span>
+                <span>Figure X: Elana at La Note <br>  $r = 10, \sigma=9$.</span>
             </div>
         </td>
         <td>
             <div class="center">
                 <img src="images/hybrid/elana_pensive_drawing.jpg" class="single-image"/> <br>
-                <span>Figure X: Elana's self-portrait drawn using Procreate.</span>
+                <span>Figure X: Elana's self-portrait drawn using Procreate <br>  $r = 10, \sigma=3$.</span>
             </div>
         </td>
         <td>
@@ -349,13 +349,13 @@
         <td>
             <div class="center">
                 <img src="images/hybrid/moto_ref.jpg" class="single-image"/> <br>
-                <span>Figure X: Real 2011 BMW R1200GS.</span>
+                <span>Figure X: Real 2011 BMW R1200GS <br>  $r = 10, \sigma=9$.</span>
             </div>
         </td>
         <td>
             <div class="center">
                 <img src="images/hybrid/moto3.jpg" class="single-image"/> <br>
-                <span>Figure X: Drawing of the 2011 BMW R1200GS (graphite on paper).</span>
+                <span>Figure X: Drawing of the 2011 BMW R1200GS (graphite on paper) <br>  $r = 10, \sigma=3$.</span>
             </div>
         </td>
         <td>
@@ -378,13 +378,13 @@
         <td>
             <div class="center">
                 <img src="images/hybrid/efros.jpg" class="single-image"/> <br>
-                <span>Figure X: Computer vision professor Alexei Efros <span class="code">efros.jpg</span>.</span>
+                <span>Figure X: Computer vision professor Alexei Efros <span class="code">efros.jpg</span> <br>  $r = 10, \sigma=9$.</span>
             </div>
         </td>
         <td>
             <div class="center">
                 <img src="images/hybrid/yirenng.jpg" class="single-image"/> <br>
-                <span>Figure X: Computer graphics professor Ren Ng <br> <span class="code">yirenng.jpg</span>.</span>
+                <span>Figure X: Computer graphics professor Ren Ng <br> <span class="code">yirenng.jpg</span> <br>  $r = 10, \sigma=3$.</span>
             </div>
         </td>
         <td>
@@ -536,6 +536,19 @@
         </tr>
     </table>
 
+
+</div>
+
+<br>
+
+<div class="content-item">
+    <a class="anchor" id="blend"></a>
+    <div class="subheader_left">Multiresolutional Blending</div>
+
+    <p>To blend two images seamlessly, the multiresolution spline technique is used. By gently distorting <span class="code">im1</span> and <span class="code">im2</span>, the images can then be joined together in a smooth seam called an <i>image spline</i>. At each band of image frequencies, <i>multiresolutional blending</i> computes this seam between the two images separately, allowing for the gradual blending of features. </p>
+
+    <p>First, a mask is created to control how the two images are combined, defining which areas of each image would be visible in the result. To blend <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, a mask is used to divide the image in half vertically (Figure). </p>
+
     <p>Finally, the blended oraple is achieved:</p>
 
     <table><tr>
@@ -553,22 +566,103 @@
         </td>
         <td>
             <div class="center">
+                <img src="images/blend/vmask.jpg" style='border:1px solid #000000'  class="single-image"/> <br>
+                <span>Figure X: Vertical mask. <br> $r = 20, \sigma=10$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
                 <img src="images/blend/out_appleorange.jpg" class="single-image"/> <br>
-                <span>Figure X: Oraple.</span>
+                <span>Figure X: Oraple. <br>  $r = 3, \sigma=1$</span>
             </div>
         </td>
     </tr></table>
 
+    <h4>None pizza with left beef</h4>
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/blend/pizza.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">pizza.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/none.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">none.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/vmask.jpg" style='border:1px solid #000000'  class="single-image"/> <br>
+                <span>Figure X: Vertical mask. <br> $r = 20, \sigma=10$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/out_pizzanone.jpg" class="single-image"/> <br>
+                <span>Figure X: None pizza with left beef. <br>  $r = 3, \sigma=1$</span>
+            </div>
+        </td>
+    </tr></table>
 
+    <h4>Jianguo of the cliffs</h4>
 
-</div>
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/blend/jianguo_couch.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">jianguo_couch.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/cliff.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">cliff.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/jg_mask.jpg" style='border:1px solid #000000'  class="single-image"/> <br>
+                <span>Figure X: Irregular mask for Jianguo made using Photoshop. <br> $r = 3, \sigma=1$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/out_jianguo_couchcliff.jpg" class="single-image"/> <br>
+                <span>Figure X: Jianguo of the cliffs. <br>  $r = 3, \sigma=1$</span>
+            </div>
+        </td>
+    </tr></table>
 
-<br>
+    <h4>Lunazilla</h4>
 
-<div class="content-item">
-    <a class="anchor" id="blend"></a>
-    <div class="subheader_left">Multiresolutional Blending</div>
-
+    <table><tr>
+        <td>
+            <div class="center">
+                <img src="images/blend/luna_night.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">luna_night.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/city.jpg" class="single-image"/> <br>
+                <span>Figure X: Original image <br> <span class="code">city.jpg</span>.</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/luna_mask.jpg" style='border:1px solid #000000'  class="single-image"/> <br>
+                <span>Figure X: Irregular mask for Luna made using Photoshop. <br> $r = 3, \sigma=1$</span>
+            </div>
+        </td>
+        <td>
+            <div class="center">
+                <img src="images/blend/out_luna_nightcity.jpg" class="single-image"/> <br>
+                <span>Figure X: Lunazilla. <br>  $r = 3, \sigma=1$</span>
+            </div>
+        </td>
+    </tr></table>
 </div>
 
 <br>
