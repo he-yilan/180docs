@@ -598,6 +598,17 @@
 
     <p>First, a mask is created to control how the two images are combined, defining which areas of each image would be visible in the result. To blend <span class="code">apple.jpeg</span> and <span class="code">orange.jpeg</span>, a mask is used to divide the image in half vertically (Figure 65). </p>
 
+    <p>A Gaussian stack $M$ of the mask is created. To blend the images, the corresponding levels of the Laplacian stacks of both original images are combined as follows:</p>
+
+    $$F_i = L^A_i * M_i + L^B_i (1 - M_i) $$
+
+    <ul>
+        <li>$F_i =$ blended result of the two images at level $i$</li>
+        <li>$L^A_i =$ level $i$ in the Laplacian stack for <span class="code">im1</span></li>
+        <li>$L^B_i =$ level $i$ in the Laplacian stack for <span class="code">im2</span></li>
+        <li>$M_i =$ level $i$ in the Gaussian stack for the mask</li>
+    </ul>
+
     <p>Finally, the blended oraple is achieved:</p>
 
     <table><tr>
