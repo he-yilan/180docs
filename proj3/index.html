@@ -118,6 +118,9 @@
         <a class="anchor" id="mean"></a>
         <div class="subheader_left">"Mean Face" of a Population</div>
 
+        <p>The average face of a population was computed using samples in the  <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database containing images of $N = 200$ individuals. Thus, while the original process to compute the mid-way face involved strictly two source images, this process was generalized to process $200$ images. Given the spatially normalized faces and keypoints from the database, the average point set and triangulation was computed over all the samples. Then, using the aforementioned warping function, each face was warped to the average geometry, and the colors were interpolated from the origina images. These interpolated colors were multiplied by $1/N$ and added to the running average.</p>
+
+        <!-- TODO: show samples and elana warped to the average face-->
     </div>
 
     <br>
