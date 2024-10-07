@@ -186,7 +186,7 @@
         <a class="anchor" id="mean"></a>
         <div class="subheader_left">"Mean Face" of a Population</div>
 
-        <p>The average face of a population was computed using samples in the  <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database containing images of $N = 200$ individuals. Thus, while the original process to compute the mid-way face involved strictly two source images, this process was generalized to process $200$ images. Given the spatially normalized neutral-expression faces and keypoints from the database, the average point set and triangulation was computed over all the samples. Then, using the aforementioned warping function, each face was warped to the average geometry, and the colors were interpolated from the origina images. These interpolated colors were multiplied by $1/N$ and added to the running average.</p>
+        <p>The average face of a population was computed using samples in the  <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database containing images of $N = 200$ individuals. Thus, while the original process to compute the mid-way face involved strictly two source images, this process was generalized to process $200$ images. Given the spatially normalized neutral-expression faces and keypoints from the database, the average point set and triangulation was computed over all the samples. Then, using the aforementioned warping function, each face was warped to the average geometry, and the colors were interpolated from the original images. These interpolated colors were multiplied by $1/N$ and added to the running average.</p>
 
         <table><tr>
             <td>
@@ -321,7 +321,37 @@
         $$\begin{aligned} \text{caricature} &= \text{warp_frac} \cdot (\text{face} - \text{avg}) + \text{avg} \\ &= \text{warp_frac} \cdot \text{face} - \text{warp_frac} \cdot \text{avg} + \text{avg} \\ \text{caricature} &= \text{warp_frac} \cdot \text{face} + (1 - \text{warp_frac} \cdot \text{avg}) \end{aligned}$$
 
         <p>Thus, this formula is equivalent to the one used previously to warp one image to another. To create caricatures of myself, $\text{warp_frac} > 1$, and as $\text{warp_frac}$ increases, the differences between my features and the average become more exaggerated.</p>
-        <!-- TODO: insert results -->
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/pop_avg/elana_FEI_color.jpg" class="single-image"/> <br>
+                        <span>Elana's face (Figure X)</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/elana_caric_1p2.jpg" class="single-image"/> <br>
+                        <span>Figure X: Caricature of Elana with $\text{warp_frac} = 1.2$.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/elana_caric_1p5.jpg" class="single-image"/> <br>
+                        <span>Figure X: Caricature of Elana with $\text{warp_frac} = 1.5$.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/elana_caric_1p75.jpg" class="single-image"/> <br>
+                        <span>Figure X: Caricature of Elana with $\text{warp_frac} = 1.75$.</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <p>Compared to the mean face, my eyes are narrower, eyebrows more arched, nose wider, and chin is more pointed. As a result, these features are amplified in the caricature. Furthermore, my smiling expression is emphasized, with the corners of my mouth pulled higher as $\text{warp_frac}$ increases. </p>
     </div>
 
     <br>
