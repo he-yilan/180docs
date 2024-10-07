@@ -116,8 +116,6 @@
 
         <p>In order to map each face to the average shape, inverse warping was used. This involved calculating an affine transformation matrix $A$ such that given the vertices of two triangles <span class="code">tri1_pts</span> $(\vec{p}_1, \vec{p}_2, \vec{p}_3)$ and <span class="code">tri2_pts</span> $(\vec{q}_1, \vec{q}_2, \vec{q}_3)$, $A$ transforms <span class="code">tri1_pts</span> to <span class="code">tri2_pts</span>. Thus, its inverse $A^{-1}$ transforms <span class="code">tri2_pts</span> to <span class="code">tri1_pts</span>.</p>
 
-        <!-- TODO: insert bill's formula -->
-
         $$\vec{p}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \end{bmatrix} \quad \vec{q}_i = \begin{bmatrix} q_{xi} \\ q_{yi} \end{bmatrix}$$
 
         Because $\vec{p}_i$ and $\vec{q}_i$ are both $2 \times 1$, homogeneous coordinates are added to allow for the affine transformation.
