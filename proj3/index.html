@@ -129,6 +129,12 @@
         <a class="anchor" id="caricatures"></a>
         <div class="subheader_left">Caricatures: Extrapolating from the mean</div>
 
+        <p>Given the average face of a population, caricatures can be created by extrapolating from the mean. Caricatures involve exaggerating the unusual features on a face. Therefore, these features can be identified and enhanced using the following formula when $\text{warp_frac} > 1$:</p>
+
+        $$\begin{aligned} \text{caricature} &= \text{warp_frac} \cdot (\text{face} - \text{avg}) + \text{avg} \\ &= \text{warp_frac} \cdot \text{face} - \text{warp_frac} \cdot \text{avg} + \text{avg} \\ \text{caricature} &= \text{warp_frac} \cdot \text{face} + (1 - \text{warp_frac} \cdot \text{avg}) \end{aligned}$$
+
+        <p>Thus, this formula is equivalent to the one used previously to warp one image to another. To create caricatures of myself, $\text{warp_frac} > 1$, and as $\text{warp_frac}$ increases, the differences between my features and the average become more exaggerated.</p>
+        <!-- TODO: insert results -->
     </div>
 
     <br>
@@ -136,6 +142,9 @@
     <div class="content-item">
         <a class="anchor" id="bw"></a>
         <div class="subheader_left">Bells & Whistles</div>
+
+        <h3>Ethnicity Change</h3>
+
 
     </div>
 
