@@ -88,6 +88,9 @@
         <p>For each triangle in the average triangulation, all the coordinates in the triangle were generated using <span class="code">skimage.draw.polygon</span>. Each of these points were multiplied by $A^{-1}$ to compute the affine projection to the corresponding triangles in <span class="code">im1</span> and <span class="code">im2</span>. </p>
 
         <p>Finally, the points in the triangles from the resulting warp were then colored through nearest-neighbor interpolation of the values in the original images via <span class="code">scipy.ndimage.map_coordinate</span>. These interpolated colors were then cross-dissolved with the weight $\text{dissolve_frac} = 0.5$. </p>
+
+        <!-- TODO: show im1 im2 and results -->
+
     </div>
 
     <br>
@@ -95,6 +98,17 @@
     <div class="content-item">
         <a class="anchor" id="morph"></a>
         <div class="subheader_left">Morph Sequence</div>
+
+        <p>The process to create the mid-way image was applied to create a morph sequence from <span class="code">im1</span> to <span class="code">im2</span>. Instead of fixing $ \text{warp_frac} = 0.5$ and $\text{warp_frac} = 0.5$, the values of $ \text{warp_frac}$ and $\text{warp_frac}$ were varied across the range $[0, 1]$ for each step of the sequence. The result was a smooth transition consisting of 46 images with the first being <span class="code">im1</span> and the final image being <span class="code">im2</span>. </p>
+
+        <table><tr>
+            <td>
+                <div class="center">
+                    <img src="images/elanbecca2.gif" class="single-image"/> <br>
+                    <span>Figure X: Morph sequence from <span class="code">elana.jpg</span> to <span class="code">rebecca.jpg</span> at $30$ frames per second (FPS).</span>
+                </div>
+            </td>
+        </tr></table>
 
     </div>
 
