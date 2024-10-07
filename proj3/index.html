@@ -58,6 +58,9 @@
         <a class="anchor" id="corres"></a>
         <div class="subheader_left">Defining Correspondences</div>
 
+        <p>To start, my friend Rebecca and I took pictures of each other in front of a uniform white background. As a preprocessing measure, the software Krita was used to crop these pictures to the same dimensions with our features aligned to ensure a smoother morph later on. Next, pairs of correspondence points were selected on the images using <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">this labeling tool</a>. The triangulations were then computed on these points via Delaunay triangulation using <span class="code">scipy.spatial.Delaunay</span>. </p>
+
+<!--        TODO: show points on elana and rebecca and triangualtions-->
     </div>
 
     <br>
@@ -66,6 +69,25 @@
         <a class="anchor" id="midway"></a>
         <div class="subheader_left">Computing the "Mid-way Face"</div>
 
+        <p>At a high level, to merge <span class="code">im1</span> and <span class="code">im2</span> into a mid-way face involved the process defined below:</p>
+
+        <ol>
+            <li>Compute the average shape by averaging each keypoint location in the two faces weighted by $\text{warp_frac}$.</li>
+            <li>Transform both faces to the average shape using inverse warping.</li>
+            <li>Average the colors together weighted by $\text{dissolve_frac}$.</li>
+        </ol>
+
+        <p>To produce the shape of the mid-way face, the average point set was computed through a weighted element-wise average between the points defined on <span class="code">im1</span> and <span class="code">im2</span>. Each point $\vec{p}_{\text{avg}}$ in the average point set was calculated using the formula $\vec{p}_{\text{avg}} = \text{warp_frac} \cdot \vec{p}_{\text{im1}} + (1 - \text{warp_frac}) \cdot \vec{p}_{\text{im2}}$ with the weight $ \text{warp_frac} = 0.5$. Given these points, the average triangulation was computed using <span class="code">scipy.spatial.Delaunay</span>.</p>
+
+        <!-- TODO: show average triangulation -->
+
+        <p>In order to map each face to the average shape, inverse warping was used. This involved calculating an affine transformation matrix $A$ such that given the vertices of two triangles <span class="code">tri1_pts</span> and <span class="code">tri2_pts</span>, $A$ transforms <span class="code">tri1_pts</span> to <span class="code">tri2_pts</span>. Thus, its inverse $A^{-1}$ transforms <span class="code">tri2_pts</span> to <span class="code">tri1_pts</span>.</p>
+
+        <!-- TODO: insert bill's formula -->
+
+        <p>For each triangle in the average triangulation, all the coordinates in the triangle were generated using <span class="code">skimage.draw.polygon</span>. Each of these points were multiplied by $A^{-1}$ to compute the affine projection to the corresponding triangles in <span class="code">im1</span> and <span class="code">im2</span>. </p>
+
+        <p>Finally, the points in the triangles from the resulting warp were then colored through nearest-neighbor interpolation of the values in the original images via <span class="code">scipy.ndimage.map_coordinate</span>. These interpolated colors were then cross-dissolved with the weight $\text{dissolve_frac} = 0.5$. </p>
     </div>
 
     <br>
