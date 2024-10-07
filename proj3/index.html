@@ -186,16 +186,51 @@
         <a class="anchor" id="mean"></a>
         <div class="subheader_left">"Mean Face" of a Population</div>
 
-        <p>The average face of a population was computed using samples in the  <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database containing images of $N = 200$ individuals. Thus, while the original process to compute the mid-way face involved strictly two source images, this process was generalized to process $200$ images. Given the spatially normalized faces and keypoints from the database, the average point set and triangulation was computed over all the samples. Then, using the aforementioned warping function, each face was warped to the average geometry, and the colors were interpolated from the origina images. These interpolated colors were multiplied by $1/N$ and added to the running average.</p>
+        <p>The average face of a population was computed using samples in the  <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database containing images of $N = 200$ individuals. Thus, while the original process to compute the mid-way face involved strictly two source images, this process was generalized to process $200$ images. Given the spatially normalized neutral-expression faces and keypoints from the database, the average point set and triangulation was computed over all the samples. Then, using the aforementioned warping function, each face was warped to the average geometry, and the colors were interpolated from the origina images. These interpolated colors were multiplied by $1/N$ and added to the running average.</p>
 
         <table><tr>
             <td>
                 <div class="center">
                     <img src="images/pop_avg/pop_avg.jpg" class="single-image"/> <br>
-                    <span>Figure X: Average face of the FEI Face Database.</span>
+                    <span>Figure X: Average neutral face of the FEI Face Database.</span>
                 </div>
             </td>
         </tr></table>
+
+        <table>
+            <tr>
+            <td>
+                <div class="center">
+                    <img src="images/pop_avg/elana_FEI_color.jpg" class="single-image"/> <br>
+                    <span>Figure X: Elana's face</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/pop_avg/elanaToAvg.jpg" class="single-image"/> <br>
+                    <span>Figure X: Elana's face warped to the average.</span>
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <div class="center">
+                    <img src="images/pop_avg/pop_avg.jpg" class="single-image"/> <br>
+                    <span>Figure X: Average face</span>
+                </div>
+            </td>
+            <td>
+                <div class="center">
+                    <img src="images/pop_avg/avgToElana.jpg" class="single-image"/> <br>
+                    <span>Figure X: The average warped to Elana's face.</span>
+                </div>
+            </td>
+        </tr>
+        </table>
+
+        <p>To fit the average face, my eyes are widened, my eyebrows are less arched, and my nose is narrowed and more upturned. Because the original image of myself has a smiling expression, the warp is not as natural as it could have been if I had used a picture with a neutral expression. Consequently, my original smiling mouth is warped into a straight line with slightly downturned corners, as if suppressing a laugh. My facial structure is distorted as well, with my cheekbones and jaw lowered to fit the average geometry.</p>
+
+        <p>Conversely, the average face warped to mine has narrow, lengthened eyes; a widened and slightly downturned nose; arched eyebrows; and a sharper, more oval jawline. To fit my smiling expression, the cheeks are more prominent, and the mouth's corners are raised, stretching the lips.</p>
 
         <!-- TODO: show samples and elana warped to the average face-->
     </div>
