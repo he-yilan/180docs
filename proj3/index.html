@@ -110,15 +110,31 @@
             <li>Average the colors together weighted by $\text{dissolve_frac}$.</li>
         </ol>
 
-        <p>To produce the shape of the mid-way face, the average point set was computed through a weighted element-wise average between each pair of correspondence points $\vec{p}^{\text{im1}}_i$ and $\vec{p}^{\text{im2}}_i$ defined on <span class="code">im1</span> and <span class="code">im2</span>. Each point $\vec{p}^{\text{avg}}_i$ in the average point set was calculated using the formula $\vec{p}^{\text{avg}}_i = \text{warp_frac} \cdot \vec{p}^{\text{im1}}_i + (1 - \text{warp_frac}) \cdot \vec{p}^{\text{im2}}_i$ with the weight $ \text{warp_frac} = 0.5$. Given these points, the average triangulation was then computed using <span class="code">scipy.spatial.Delaunay</span>.</p>
+        <p>To produce the shape of the mid-way face, the average point set was computed through a weighted element-wise average between each pair of correspondence points $\vec{p}^{\text{im1}}_i$ and $\vec{p}^{\text{im2}}_i$ defined on <span class="code">im1</span> and <span class="code">im2</span>. Each point $\vec{q}_i$ in the average point set was calculated using the formula $\vec{q}_i = \text{warp_frac} \cdot \vec{p}^{\text{im1}}_i + (1 - \text{warp_frac}) \cdot \vec{p}^{\text{im2}}_i$ with the weight $ \text{warp_frac} = 0.5$. Given these points, the average triangulation was then computed using <span class="code">scipy.spatial.Delaunay</span>.</p>
 
-        <p>In order to map each face to the average shape, inverse warping was used. This involved calculating an affine transformation matrix $A$ such that given the vertices of two triangles <span class="code">tri1_pts</span> and <span class="code">tri2_pts</span>, $A$ transforms <span class="code">tri1_pts</span> to <span class="code">tri2_pts</span>. Thus, its inverse $A^{-1}$ transforms <span class="code">tri2_pts</span> to <span class="code">tri1_pts</span>.</p>
+        <p>In order to map each face to the average shape, inverse warping was used. This involved calculating an affine transformation matrix $A$ such that given the vertices of two triangles <span class="code">tri1_pts</span> $(\vec{p}_1, \vec{p}_2, \vec{p}_3)$ and <span class="code">tri2_pts</span> $(\vec{q}_1, \vec{q}_2, \vec{q}_3)$, $A$ transforms <span class="code">tri1_pts</span> to <span class="code">tri2_pts</span>. Thus, its inverse $A^{-1}$ transforms <span class="code">tri2_pts</span> to <span class="code">tri1_pts</span>.</p>
 
         <!-- TODO: insert bill's formula -->
 
+        $$\vec{p}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \end{bmatrix} \quad \vec{q}_i = \begin{bmatrix} q_{xi} \\ q_{yi} \end{bmatrix}$$
+
+        Because $\vec{p}_i$ and $\vec{q}_i$ are both $2 \times 1$, homogeneous coordinates are added to allow for the affine transformation.
+
+        $$\vec{p'}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \\ 1 \end{bmatrix} \quad \vec{q'}_i = \begin{bmatrix} q_{xi} \\ q_{yi} \\ 1 \end{bmatrix}$$
+
+        $$ A := \begin{bmatrix} a & b & c \\ d & e & f \\ 0 & 0 & 1 \end{bmatrix} \quad \text{st} \quad A\vec{p'}_i = \vec{q'}_i$$
+
         <p>For each triangle in the average triangulation, all the coordinates in the triangle were generated using <span class="code">skimage.draw.polygon</span>. Each of these points were multiplied by $A^{-1}$ to compute the affine projection to the corresponding triangles in <span class="code">im1</span> and <span class="code">im2</span>. </p>
 
+        $$A^{-1} \vec{q'}_i = \vec{p'}_i$$
+
         <p>Finally, the points in the triangles from the resulting warp were then colored through nearest-neighbor interpolation of the values in the original images via <span class="code">scipy.ndimage.map_coordinate</span>. These interpolated colors were then cross-dissolved with the weight $\text{dissolve_frac} = 0.5$. </p>
+
+        $$\text{blended_colors} = \text{dissolve_frac} \cdot \text{new_colors1} + (1 - \text{dissolve_frac}) \cdot \text{new_colors2}$$
+        <ul>
+            <li>$\text{new_colors1} =$ interpolated colors from <span class="code">im1</span></li>
+            <li>$\text{new_colors2} =$ interpolated colors from <span class="code">im2</span></li>
+        </ul>
 
         <table>
             <tr>
