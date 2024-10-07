@@ -58,9 +58,42 @@
         <a class="anchor" id="corres"></a>
         <div class="subheader_left">Defining Correspondences</div>
 
-        <p>To start, my friend Rebecca and I took pictures of each other in front of a uniform white background. As a preprocessing measure, the software Krita was used to crop these pictures to the same dimensions with our features aligned to ensure a smoother morph later on. Next, pairs of correspondence points were selected on the images using <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">this labeling tool</a>. The triangulations were then computed on these points via Delaunay triangulation using <span class="code">scipy.spatial.Delaunay</span>. </p>
+        <p>To start, my friend Rebecca and I took pictures of each other in front of a uniform white background. As a preprocessing measure, the software Krita was used to crop these pictures to the same dimensions with our features aligned to ensure a smoother morph later on. Next, pairs of correspondence points were selected on the images using <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">this labeling tool</a>; in total, 44 points were defined on each image. The triangulations were then computed on these points via Delaunay triangulation using <span class="code">scipy.spatial.Delaunay</span>. </p>
 
-<!--        TODO: show points on elana and rebecca and triangualtions-->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/elana.jpg" class="single-image"/> <br>
+                        <span>Figure X: <span class="code">elana.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/rebecca.jpg" class="single-image"/> <br>
+                        <span>Figure X: <span class="code">rebecca.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/elana_triangle.jpg" class="single-image"/> <br>
+                        <span>Figure X: Correspondence points on <span class="code">elana.jpg</span> with Delaunay triangulation.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/rebecca_triangle.jpg" class="single-image"/> <br>
+                        <span>Figure X: Correspondence points on <span class="code">rebecca.jpg</span> with Delaunay triangulation.</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
     <br>
@@ -77,9 +110,7 @@
             <li>Average the colors together weighted by $\text{dissolve_frac}$.</li>
         </ol>
 
-        <p>To produce the shape of the mid-way face, the average point set was computed through a weighted element-wise average between the points defined on <span class="code">im1</span> and <span class="code">im2</span>. Each point $\vec{p}_{\text{avg}}$ in the average point set was calculated using the formula $\vec{p}_{\text{avg}} = \text{warp_frac} \cdot \vec{p}_{\text{im1}} + (1 - \text{warp_frac}) \cdot \vec{p}_{\text{im2}}$ with the weight $ \text{warp_frac} = 0.5$. Given these points, the average triangulation was computed using <span class="code">scipy.spatial.Delaunay</span>.</p>
-
-        <!-- TODO: show average triangulation -->
+        <p>To produce the shape of the mid-way face, the average point set was computed through a weighted element-wise average between each pair of correspondence points $\vec{p}^{\text{im1}}_i$ and $\vec{p}^{\text{im2}}_i$ defined on <span class="code">im1</span> and <span class="code">im2</span>. Each point $\vec{p}^{\text{avg}}_i$ in the average point set was calculated using the formula $\vec{p}^{\text{avg}}_i = \text{warp_frac} \cdot \vec{p}^{\text{im1}}_i + (1 - \text{warp_frac}) \cdot \vec{p}^{\text{im2}}_i$ with the weight $ \text{warp_frac} = 0.5$. Given these points, the average triangulation was then computed using <span class="code">scipy.spatial.Delaunay</span>.</p>
 
         <p>In order to map each face to the average shape, inverse warping was used. This involved calculating an affine transformation matrix $A$ such that given the vertices of two triangles <span class="code">tri1_pts</span> and <span class="code">tri2_pts</span>, $A$ transforms <span class="code">tri1_pts</span> to <span class="code">tri2_pts</span>. Thus, its inverse $A^{-1}$ transforms <span class="code">tri2_pts</span> to <span class="code">tri1_pts</span>.</p>
 
@@ -89,7 +120,28 @@
 
         <p>Finally, the points in the triangles from the resulting warp were then colored through nearest-neighbor interpolation of the values in the original images via <span class="code">scipy.ndimage.map_coordinate</span>. These interpolated colors were then cross-dissolved with the weight $\text{dissolve_frac} = 0.5$. </p>
 
-        <!-- TODO: show im1 im2 and results -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/elana.jpg" class="single-image"/> <br>
+                        <span>Figure X: <span class="code">elana.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/rebecca.jpg" class="single-image"/> <br>
+                        <span>Figure X: <span class="code">rebecca.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/midway/midway.jpg" class="single-image"/> <br>
+                        <span>Figure X: Average face of <span class="code">elana.jpg</span> and <span class="code">rebecca.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </div>
 
