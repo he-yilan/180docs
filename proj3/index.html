@@ -212,6 +212,11 @@
                 </div>
             </td>
             </tr>
+        </table>
+
+        <p>To fit the average face, my eyes are widened, my eyebrows are straightened, and my nose is narrowed and more upturned. Because the original image of myself has a smiling expression, the warp is not as natural as it could have been if I had used a picture with a neutral expression. Consequently, my original smiling mouth is warped into a straight line with slightly downturned corners, as if suppressing a laugh. My facial structure is distorted as well, with my cheekbones and jaw lowered to fit the average geometry.</p>
+
+        <table>
             <tr>
             <td>
                 <div class="center">
@@ -227,8 +232,6 @@
             </td>
         </tr>
         </table>
-
-        <p>To fit the average face, my eyes are widened, my eyebrows are less arched, and my nose is narrowed and more upturned. Because the original image of myself has a smiling expression, the warp is not as natural as it could have been if I had used a picture with a neutral expression. Consequently, my original smiling mouth is warped into a straight line with slightly downturned corners, as if suppressing a laugh. My facial structure is distorted as well, with my cheekbones and jaw lowered to fit the average geometry.</p>
 
         <p>Conversely, the average face warped to mine has narrow, lengthened eyes; a widened and slightly downturned nose; arched eyebrows; and a sharper, more oval jawline. To fit my smiling expression, the cheeks are more prominent, and the mouth's corners are raised, stretching the lips.</p>
 
@@ -307,7 +310,7 @@
             </tr>
         </table>
 
-        <p>In Figure X, the person's glasses interfered with the warp, causing noticeable artifacts. The glasses, being rigid in contrast to the soft features of the face, distorted unnaturally while the other features were transformed to fit the average face shape. This resulted in the frames being skewed and disproportionate.</p>
+        <p>In Figure X, the person's glasses interferes with the warp, causing noticeable artifacts. The glasses, being rigid in contrast to the soft features of the face, distorted unnaturally while the other features were transformed to fit the average face shape. This resulted in the frames being skewed and disproportionate.</p>
     </div>
 
     <br>
@@ -361,9 +364,44 @@
         <div class="subheader_left">Bells & Whistles</div>
 
         <h3>Ethnicity Change</h3>
-        <p>To change the ethnicity of my face, I essentially averaged my face with that of the average French woman produced from a <a href="https://fstoppers.com/portraits/average-faces-women-around-world-2944">study by the University of Glasgow</a>. To change only the shape of my face, the parameters $\text{warp_frac}$ and  $\text{dissolve_frac}$ were set as $\text{warp_frac} = 0.5$ and  $\text{dissolve_frac} = 1$. This warps my face geometry to that of an average French woman, though only interpolating the colors from my face. To change only the color,  $\text{warp_frac} = 1$ and  $\text{dissolve_frac} = 0.5$ were used, maintaining the geometry of my face, though with the coloration of the average French woman. Thus, for the full morph, the parameters were set to combine both geometry and coloration from both images equally ($\text{warp_frac} = 0.5$ and  $\text{dissolve_frac} = 0.5$).</p>
+        <p>To change the ethnicity of my face, I averaged my face with that of the average French woman produced from a <a href="https://fstoppers.com/portraits/average-faces-women-around-world-2944">study by the University of Glasgow</a>. To change only the shape of my face, the parameters $\text{warp_frac}$ and  $\text{dissolve_frac}$ were set as $\text{warp_frac} = 0.5$ and  $\text{dissolve_frac} = 1$. This warps my face geometry to that of an average French woman, though interpolating the colors from only my face. To change only the color,  $\text{warp_frac} = 1$ and  $\text{dissolve_frac} = 0.5$ were used, maintaining the geometry of my face, though with the coloration of the average French woman. Thus, for the full morph, the parameters were set to combine both geometry and coloration from both images equally ($\text{warp_frac} = 0.5$ and  $\text{dissolve_frac} = 0.5$).</p>
 
-        <!-- TODO: show images with shape, color, and both -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/france.jpg" class="single-image"/> <br>
+                        <span>Figure X: Face of the average French woman.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/elana_france.jpg" class="single-image"/> <br>
+                        <span>Figure X: Elana's face.</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/french_elana_shape.jpg" class="single-image"/> <br>
+                        <span>Figure X: French-shaped Elana.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/french_elana_color.jpg" class="single-image"/> <br>
+                        <span>Figure X: French-colored Elana.</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/caricatures/french_elana.jpg" class="single-image"/> <br>
+                        <span>Figure X: Full French Elana.</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </div>
 
