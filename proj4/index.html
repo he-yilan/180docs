@@ -152,6 +152,74 @@
             <li>Use inverse-warping to transform each point in the output image, mapping it to the points in the original image.</li>
             <li>Use <span class="code">scipy.ndimage.map_coordinates</span> to interpolate the color values of the original image to these inverse-warped coordinates.</li>
         </ol>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/outlet.jpg" class="single-image"/> <br>
+                        <span>original <span class="code">outlet.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/outlet_trapezoid.jpg" class="single-image"/> <br>
+                        <span>Initial vertices</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/outlet_rect.jpg" class="single-image"/> <br>
+                        <span>Vertices of the target rectangle</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/outlet_crop.jpg" class="single-image"/> <br>
+                        <span>Rectified <span class="code">outlet.jpg</span> cropped to the dimensions of the original image</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/butterflies.jpg" class="single-image"/> <br>
+                        <span>original <span class="code">butterflies.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/butterflies_trapezoid.jpg" class="single-image"/> <br>
+                        <span>Initial vertices</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/butterflies_rect.jpg" class="single-image"/> <br>
+                        <span>Vertices of the target rectangle</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/butterflies_crop.jpg" class="single-image"/> <br>
+                        <span>Rectified <span class="code">butterflies.jpg</span> cropped to the dimensions of the original image</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
