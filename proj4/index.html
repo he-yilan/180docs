@@ -51,12 +51,70 @@
         <h3>Images for rectification</h3>
         <p>I captured photos of objects with rectangular faces, one being a power outlet in Cory Hall, and another being a print of my artwork. By taking the pictures at an angle, the face which is rectangular at an aerial view, appears as a trapezoid.  </p>
 
-        <!-- TODO: insert images -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/outlet.jpg" class="single-image"/> <br>
+                        <span><span class="code">outlet.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/rect/butterflies.jpg" class="single-image"/> <br>
+                        <span><span class="code">butterflies.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <h3>Images for mosaics</h3>
         <p>For each scene, I shot multiple photos from different angles by fixing the center of projection (COP) and rotating the camera. </p>
 
-        <!-- TODO: insert images -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte2.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte3.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/bench0.jpg" class="single-image"/> <br>
+                        <span><span class="code">bench0.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/bench1.jpg" class="single-image"/> <br>
+                        <span><span class="code">bench1.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/moffitt0.jpg" class="single-image"/> <br>
+                        <span><span class="code">moffitt0.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/moffitt1.jpg" class="single-image"/> <br>
+                        <span><span class="code">moffitt1.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -93,7 +151,6 @@
             <li>Compute $H^{-1}$</li>
             <li>Use inverse-warping to transform each point in the output image, mapping it to the points in the original image.</li>
             <li>Use <span class="code">scipy.ndimage.map_coordinates</span> to interpolate the color values of the original image to these inverse-warped coordinates.</li>
-            <li>Crop the resulting image to the initial dimensions.</li>
         </ol>
     </div>
 
@@ -103,9 +160,19 @@
         <a class="anchor" id="mosaic"></a>
         <div class="subheader_left">Blending the Images into a Mosaic</div>
 
+        <p>Given a pair of images and correspondence points, one image is selected to be the reference image <span class="code">ref</span> and the other being the image to be warped <span class="code">to_warp</span>. With these defined, the images are then merged into a mosaic through a process similar to rectification. </p>
+
+        <ol>
+            <li>Compute $H$ such that it maps the points in <span class="code">to_warp</span> to the points in <span class="code">ref</span>.</li>
+            <li><span class="code">result = warpImage(to_warp, H)</span></li>
+            <li>Because the dimensions of <span class="code">result</span> would likely be different from the initial dimensions, pad <span class="code">result</span> and <span class="code">ref</span> to the same dimensions (the maximum of the two). </li>
+            <li>Blend the images together.</li>
+        </ol>
+
+        The blending was done with a Laplacian stack and mask as demonstrated in the previous project <a href="https://he-yilan.github.io/180docs/proj2/#blend">Fun with Filters and Frequencies</a>.
     </div>
 
-
+    <br>
 </div>
 </body>
 </html>
