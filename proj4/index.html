@@ -83,6 +83,18 @@
     <div class="content-item">
         <a class="anchor" id="rect"></a>
         <div class="subheader_left">Image Rectification</div>
+
+        <p>For each image to be rectified, the target rectangular coordinates were hardcoded. Then, the homography matrix $H$ between the original trapezoidal coordinates and the target coordinates was computed. Given the image and $H$ the function <span class="code">warpImage(im, H)</span> maps the image to the target coordinates through the following process:</p>
+
+        <ol>
+            <li>Obtain the coordinates of the four corners of the original image.</li>
+            <li>Transform the four corners by $H$, storing the result in <span class="code">warp_corners</span>.</li>
+            <li>Given the minimum and maximum coordinates in <span class="code">warp_corners</span>, determine the dimensions of the output image.</li>
+            <li>Compute $H^{-1}$</li>
+            <li>Use inverse-warping to transform each point in the output image, mapping it to the points in the original image.</li>
+            <li>Use <span class="code">scipy.ndimage.map_coordinates</span> to interpolate the color values of the original image to these inverse-warped coordinates.</li>
+            <li>Crop the resulting image to the initial dimensions.</li>
+        </ol>
     </div>
 
     <br>
