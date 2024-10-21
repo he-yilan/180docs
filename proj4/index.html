@@ -51,6 +51,12 @@
         <h3>Images for rectification</h3>
         <p>I captured photos of objects with rectangular faces, one being a power outlet in Cory Hall, and another being a print of my artwork. By taking the pictures at an angle, the face which is rectangular at an aerial view, appears as a trapezoid.  </p>
 
+        <!-- TODO: insert images -->
+
+        <h3>Images for mosaics</h3>
+        <p>For each scene, I shot multiple photos from different angles by fixing the center of projection (COP) and rotating the camera. </p>
+
+        <!-- TODO: insert images -->
     </div>
 
     <br>
@@ -58,6 +64,18 @@
     <div class="content-item">
         <a class="anchor" id="homography"></a>
         <div class="subheader_left">Recovering Homographies</div>
+
+        <p>Using the images taken, correspondence points were defined using <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">this labeling tool</a>. In two images of the same scene from different angles, these points mark key common regions. The relation between these points is represented by the homography matrix $H$. More generally, a homography is a mapping between any two projective planes with the same COP. Given the correspondence points, the homography is recovered by setting up a system of equations and solving for $H$ via <span class="code">np.linalg.lstsq</span>.</p>
+
+        <p>Suppose we have points $\vec{p}_i$ in <span class="code">im1</span> and $\vec{q}_i$ in <span class="code">im2</span>.</p>
+        $$\vec{p}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \end{bmatrix} \quad \vec{q}_i = \begin{bmatrix} w \cdot q_{xi} \\ w \cdot q_{yi} \end{bmatrix}$$
+
+        <p>Because $\vec{p}_i$ and $\vec{q}_i$ are both $2 \times 1$, homogeneous coordinates are added to allow for the affine transformation.</p>
+
+        $$\vec{p'}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \\ 1 \end{bmatrix} \quad \vec{q'}_i = \begin{bmatrix} w \cdot q_{xi} \\ w \cdot q_{yi} \\ w \end{bmatrix}$$
+
+        $$ H := \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{bmatrix} \quad \text{st} \quad H\vec{p'}_i = \vec{q'}_i$$
+
     </div>
 
     <br>
