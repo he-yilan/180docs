@@ -401,6 +401,8 @@
         <a class="anchor" id="descriptor"></a>
         <div class="subheader_left">Feature Descriptor Extraction</div>
 
+        <p>Once the strongest keypoints have been selected, among these, the points marking regions in common between the two images should be kept. To match common areas, features are first extracted. For each point, a $40 \times 40$ description of the local image around it is identified. This window is resized to be $8 \times 8$, normalized, and then flattened into a $64 \times 1$ descriptor vector. This is done for all 3 color channels, stacking them in the end.</p>
+
     </div>
 
     <br>
@@ -409,6 +411,36 @@
         <a class="anchor" id="matching"></a>
         <div class="subheader_left">Feature Matching</div>
 
+        <p>Having extracted the features for each keypoint, these features are then compared between the two images. Each feature in <span class="code">ref</span> is compared to all features in <span class="code">to_warp</span> by sum of squared distances (SSD). </p>
+
+        $$SSD = \sum^n_{i=0} (A_i - B_i)^2 $$
+
+        <ul>
+            <li>$n=$ total number of values in the array</li>
+            <li>$A_i =$ feature descriptor in <span class="code">ref</span></li>
+            <li>$B_i =$ feature descriptor in <span class="code">to_warp</span></li>
+        </ul>
+
+        <p>During this process, the nearest and second nearest neighbors are recorded (the features which produce the lowest <span class="code">dist1</span> and second lowest error <span class="code">dist2</span>). Then, the ratio <span class="code">dist1 / dist2</span> is calculated. Using Lowe's technique, if there is a valid match, the nearest neighbor must be significantly better than the second nearest neighbor. Therefore, the ratio must be less than the threshold, chosen to be $0.65$. If this inequality is not satisfied, both candidates are rejected. </p>
+
+        <p>These comparisons are done for all points in both images, and only mutual matches are kept.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_ref_match.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda1.jpg</span> keypoints after feature matching</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_warp_match.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span> keypoints after feature matching</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -416,6 +448,25 @@
     <div class="content-item">
         <a class="anchor" id="ransac"></a>
         <div class="subheader_left">Random Sample Consensus (RANSAC)</div>
+
+        <p>Even after ANMS and feature-matching, there may still be outliers among the correspondence points. To further filter the keypoints, Random Sample Consensus (RANSAC) is implemented. At each step of RANSAC, $4$ random pairs of points are used to compute a homography $H$. For each pair of points $p, q$ ($p$ from <span class="code">to_warp</span> and $q$ from <span class="code">ref</span>), the SSD between $q$ and $Hp$ is computed. If this distance is within 2 pixels, the pair is kept. This is repeated for $10,000$ iterations which generates the maximum set of inliers. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_ref_ransac.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda1.jpg</span> keypoints after RANSAC</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_warp_ransac.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span> keypoints after RANSAC</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </div>
 
