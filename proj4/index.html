@@ -246,6 +246,7 @@
 
         <p>Given a pair of images and correspondence points, one image is selected to be the reference image <span class="code">ref</span> and the other being the image to be warped <span class="code">to_warp</span>. With these defined, the images are then merged into a mosaic through a process similar to rectification. </p>
 
+        <!-- TODO: rewrite so that it's not a list -->
         <ol>
             <li>Compute $H$ such that it maps the points in <span class="code">to_warp</span> to the points in <span class="code">ref</span>.</li>
             <li><span class="code">result = warpImage(to_warp, H)</span></li>
