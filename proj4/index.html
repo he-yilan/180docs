@@ -47,7 +47,7 @@
         <tr>
             <td>
                 <div class="center">
-                    <img src="images/mosaic/out_leconte.jpg" class="single-image"/> <br>
+                    <img src="images/4b/out_leconte_final.jpg" class="single-image"/> <br>
                 </div>
             </td>
         </tr>
@@ -338,7 +338,22 @@
 
         <p>To automate the selection of correspondence points between two images, interest points are first identified in each image. For feature-based image stitching, salient features, such as corners, make useful interest points. A corner is the junction between two edges and can be recognized by looking through a small window; shifting this window in any direction should produce a significant change in intensity. This is the idea behind the Harris corner detection algorithm which is implemented in the function <span class="code">get_harris_corners</span>. This function was used to identify the coordinates of corners in the scene, discarding points along the borders of the image. </p>
 
-        <!-- TODO: show images with harris corners -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_ref_harris.jpg" class="single-image"/> <br>
+                        <span>Corners detected on <span class="code">soda1.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_warp_harris.jpg" class="single-image"/> <br>
+                        <span>Corners detected on <span class="code">soda0.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -347,13 +362,36 @@
         <a class="anchor" id="anms"></a>
         <div class="subheader_left">Adaptive Non-Maximal Suppression (ANMS)</div>
 
-        <p>Given all of the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point is compared to all other points based on their strengths (found via <span class="code">get_harris_corners</span>). Through this process, we identify the region (represented by the radius from the point) in which a point is the local maximum. Thus, the point with the greatest radius is the global maximum. </p>
+        <p>Given all of the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point $x_i$ is compared to all other points $x_j \in I$ based on their strengths $f(x_i)$ (found via <span class="code">get_harris_corners</span>). To ensure that a point is sufficiently stronger than its neighbor, $c_{\text{robust}} = 0.9$ is used to scale the strengths of neighboring points. Through this process, we identify the region (represented by the radius $r_i$ from the point) in which a point is the local maximum. Thus, the point with the greatest radius is the global maximum. </p>
 
         <!-- TODO: insert equation for radius -->
+        $$r_i = \min_j |x_i - x_j| \quad \text{st} \quad f(x_i) < c_{\text{robust}} f(x_j) \quad x_j \in I$$
+        <ul>
+            <li>$x_i =$ 2D interest point location</li>
+            <li>$r_i =$ radius from $x_i$ within which $x_i$ has the highest strength</li>
+            <li>$f(x_i) =$ strength of point $x_i$</li>
+            <li>$I =$ set of all interest point location</li>
+            <li>$c_{\text{robust}} = 0.9$</li>
+        </ul>
 
         <p>After the radii for all points has been computed, the top  <span class="code">threshold = 500</span> points with the greatest radii are kept. </p>
 
-        <!-- TODO:: show images with filtered harris corners -->
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_ref_anms.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda1.jpg</span> keypoints after ANMS</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_warp_anms.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span> keypoints after ANMS</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </div>
 
