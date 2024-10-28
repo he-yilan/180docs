@@ -335,6 +335,8 @@
         <div class="subheader_left">Harris Corner Detection</div>
 
         <p>To automate the selection of correspondence points between two images, interest points are first identified in each image. For feature-based image stitching, salient features, such as corners, make useful interest points. A corner is the junction between two edges and can be recognized by looking through a small window; shifting this window in any direction should produce a significant change in intensity. This is the idea behind the Harris corner detection algorithm which is implemented in the function <span class="code">get_harris_corners</span>. This function was used to identify the coordinates of corners in the scene, discarding points along the borders of the image. </p>
+
+        <!-- TODO: show images with harris corners -->
     </div>
 
     <br>
@@ -342,6 +344,14 @@
     <div class="content-item">
         <a class="anchor" id="anms"></a>
         <div class="subheader_left">Adaptive Non-Maximal Suppression (ANMS)</div>
+
+        <p>Given all of the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point is compared to all other points based on their strengths (found via <span class="code">get_harris_corners</span>). Through this process, we identify the region (represented by the radius from the point) in which a point is the local maximum. Thus, the point with the greatest radius is the global maximum. </p>
+
+        <!-- TODO: insert equation for radius -->
+
+        <p>After the radii for all points has been computed, the top  <span class="code">threshold = 500</span> points with the greatest radii are kept. </p>
+
+        <!-- TODO:: show images with filtered harris corners -->
 
     </div>
 
