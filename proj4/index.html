@@ -334,6 +334,7 @@
         <a class="anchor" id="corners"></a>
         <div class="subheader_left">Harris Corner Detection</div>
 
+        <p>To automate the selection of correspondence points between two images, interest points are first identified in each image. For feature-based image stitching, salient features, such as corners, make useful interest points. A corner is the junction between two edges and can be recognized by looking through a small window; shifting this window in any direction should produce a significant change in intensity. This is the idea behind the Harris corner detection algorithm which is implemented in the function <span class="code">get_harris_corners</span>. This function was used to identify the coordinates of corners in the scene, discarding points along the borders of the image. </p>
     </div>
 
     <br>
