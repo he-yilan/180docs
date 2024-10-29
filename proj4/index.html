@@ -91,28 +91,28 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
-                        <span><span class="code">leconte2.jpg</span></span>
+                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte3.jpg</span></span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
-                        <span><span class="code">leconte3.jpg</span></span>
+                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte2.jpg</span></span>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/bench0.jpg" class="single-image"/> <br>
-                        <span><span class="code">bench0.jpg</span></span>
+                        <img src="images/mosaic/soda1_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda1.jpg</span></span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/bench1.jpg" class="single-image"/> <br>
-                        <span><span class="code">bench1.jpg</span></span>
+                        <img src="images/mosaic/soda0_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span></span>
                     </div>
                 </td>
             </tr>
@@ -140,6 +140,23 @@
         <div class="subheader_left">Recovering Homographies</div>
 
         <p>Using the images taken, correspondence points were defined using <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">this labeling tool</a>. In two images of the same scene from different angles, these points mark key common regions. The relation between these points is represented by the homography matrix $H$. More generally, a homography is a mapping between any two projective planes with the same COP. Given the correspondence points, the homography is recovered by setting up a system of equations and solving for $H$ via <span class="code">np.linalg.lstsq</span>.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_ref_manual.jpg" class="single-image"/> <br>
+                        <span>Manually-selected keypoints <br> on <span class="code">soda1.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/corners/soda_warp_manual.jpg" class="single-image"/> <br>
+                        <span>Manually-selected keypoints <br> on <span class="code">soda0.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <p>Suppose we have points $\vec{p}_i$ in <span class="code">im1</span> and $\vec{q}_i$ in <span class="code">im2</span>.</p>
         $$\vec{p}_i = \begin{bmatrix} p_{xi} \\ p_{yi} \end{bmatrix} \quad \vec{q}_i = \begin{bmatrix} w \cdot q_{xi} \\ w \cdot q_{yi} \end{bmatrix}$$
@@ -246,7 +263,6 @@
 
         <p>Given a pair of images and correspondence points, one image is selected to be the reference image <span class="code">ref</span> and the other being the image to be warped <span class="code">to_warp</span>. With these defined, the images are then merged into a mosaic through a process similar to rectification. </p>
 
-        <!-- TODO: rewrite so that it's not a list -->
         <ol>
             <li>Compute $H$ such that it maps the points in <span class="code">to_warp</span> to the points in <span class="code">ref</span>.</li>
             <li><span class="code">result = warpImage(to_warp, H)</span></li>
@@ -269,14 +285,14 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
-                        <span><span class="code">leconte2.jpg</span></span>
+                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte3.jpg</span></span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
-                        <span><span class="code">leconte3.jpg</span></span>
+                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte2.jpg</span></span>
                     </div>
                 </td>
                 <td>
@@ -289,19 +305,19 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/bench0.jpg" class="single-image"/> <br>
-                        <span><span class="code">bench0.jpg</span></span>
+                        <img src="images/mosaic/soda1_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span></span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/bench1.jpg" class="single-image"/> <br>
-                        <span><span class="code">bench1.jpg</span></span>
+                        <img src="images/mosaic/soda0_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span></span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img src="images/mosaic/out_bench.jpg" class="single-image"/> <br>
+                        <img src="images/mosaic/out_soda.jpg" class="single-image"/> <br>
                         <span>Blended mosaic</span>
                     </div>
                 </td>
@@ -364,7 +380,6 @@
 
         <p>Given all of the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point $x_i$ is compared to all other points $x_j \in I$ based on their strengths $f(x_i)$ (found via <span class="code">get_harris_corners</span>). To ensure that a point is sufficiently stronger than its neighbor, $c_{\text{robust}} = 0.9$ is used to scale the strengths of neighboring points. Through this process, we identify the region (represented by the radius $r_i$ from the point) in which a point is the local maximum. Thus, the point with the greatest radius is the global maximum. </p>
 
-        <!-- TODO: insert equation for radius -->
         $$r_i = \min_j |x_i - x_j| \quad \text{st} \quad f(x_i) < c_{\text{robust}} f(x_j) \quad x_j \in I$$
         <ul>
             <li>$x_i =$ 2D interest point location</li>
@@ -403,6 +418,16 @@
 
         <p>Once the strongest keypoints have been selected, among these, the points marking regions in common between the two images should be kept. To match common areas, features are first extracted. For each point, a $40 \times 40$ description of the local image around it is identified. This window is resized to be $8 \times 8$, normalized, and then flattened into a $64 \times 1$ descriptor vector. This is done for all 3 color channels, stacking them in the end.</p>
 
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/features/feature_ref46.jpg" class="single-image"/> <br>
+                        <span> $40 \times 40$ feature descriptor from <span class="code">soda1.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -469,6 +494,89 @@
         </table>
 
         <p>These points are then used to compute $H$ which is applied to warp <span class="code">to_warp</span>. After warping, <span class="code">to_warp</span> and <span class="code">ref</span> are stitched together to create the final mosaic. </p>
+
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/leconte3_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte3.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/leconte2_small.jpg" class="single-image"/> <br>
+                        <span><span class="code">leconte2.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/out_leconte.jpg" class="single-image"/> <br>
+                        <span>Manually-stitched mosaic</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/4b/out_leconte_final.jpg" class="single-image"/> <br>
+                        <span>Automatically-stitched mosaic</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/soda1_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/soda0_0.jpg" class="single-image"/> <br>
+                        <span><span class="code">soda0.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/out_soda.jpg" class="single-image"/> <br>
+                        <span>Manually-stitched mosaic</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/4b/out_soda_final.jpg" class="single-image"/> <br>
+                        <span>Automatically-stitched mosaic</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/moffitt0.jpg" class="single-image"/> <br>
+                        <span><span class="code">moffitt0.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/moffitt1.jpg" class="single-image"/> <br>
+                        <span><span class="code">moffitt1.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/mosaic/out_moffitt.jpg" class="single-image"/> <br>
+                        <span>Manually-stitched mosaic</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/4b/out_moffitt_final.jpg" class="single-image"/> <br>
+                        <span>Automatically-stitched mosaic</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
 
     </div>
 
