@@ -56,6 +56,7 @@
     <div class="content-item">
         <a class="anchor" id="overview1"></a>
         <div class="subheader_left">Overview</div>
+        <p>In this project, images are stitched together to create mosaics. The first section involves manually selecting correspondence points in two images and then recovering the homography matrix $H$ which is then used to warp one image to align with the reference. The two aligned images are then blended into a seamless mosaic. The second part follows this same procedure, but rather than manually labeling points, keypoints are automatically defined through corner detection and feature matching.</p>
     </div>
 
     <br>
@@ -352,7 +353,7 @@
         <a class="anchor" id="corners"></a>
         <div class="subheader_left">Harris Corner Detection</div>
 
-        <p>To automate the selection of correspondence points between two images, interest points are first identified in each image. For feature-based image stitching, salient features, such as corners, make useful interest points. A corner is the junction between two edges and can be recognized by looking through a small window; shifting this window in any direction should produce a significant change in intensity. This is the idea behind the Harris corner detection algorithm which is implemented in the function <span class="code">get_harris_corners</span>. This function was used to identify the coordinates of corners in the scene, discarding points along the borders of the image. </p>
+        <p>To automate the selection of correspondence points between two images, interest points are first identified in each image. For feature-based image stitching, salient features, such as corners, make useful interest points. A corner is the junction between two edges and can be recognized by looking through a small window; shifting this window in any direction should produce a significant change in intensity. This is the idea behind the Harris corner detection algorithm which is implemented in the function <span class="code">get_harris_corners</span>. This function is used to identify the coordinates of corners in the scene, discarding points along the borders of the image. </p>
 
         <table>
             <tr>
@@ -378,14 +379,14 @@
         <a class="anchor" id="anms"></a>
         <div class="subheader_left">Adaptive Non-Maximal Suppression (ANMS)</div>
 
-        <p>Given all of the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point $x_i$ is compared to all other points $x_j \in I$ based on their strengths $f(x_i)$ (found via <span class="code">get_harris_corners</span>). To ensure that a point is sufficiently stronger than its neighbor, $c_{\text{robust}} = 0.9$ is used to scale the strengths of neighboring points. Through this process, we identify the region (represented by the radius $r_i$ from the point) in which a point is the local maximum. Thus, the point with the greatest radius is the global maximum. </p>
+        <p>Given all the corners in the images found through Harris corner detection, not all of these would be necessary to use as correspondence points. Therefore, to select the strongest corners, Adaptive Non-Maximal Suppression (ANMS) is applied. To perform ANMS, the function <span class="code">dist2</span> is used to calculate the pairwise distances of the points. In addition, each point $x_i$ is compared to all other points $x_j \in I$ based on their strengths $f(x_i)$ (found via <span class="code">get_harris_corners</span>). To ensure that a point is sufficiently stronger than its neighbor, $c_{\text{robust}} = 0.9$ is utilized to scale the strengths of neighboring points. Through this process, the region (represented by the radius $r_i$ from the point) in which a point is the local maximum is computed. Thus, the point with the greatest radius is the global maximum. </p>
 
         $$r_i = \min_j |x_i - x_j| \quad \text{st} \quad f(x_i) < c_{\text{robust}} f(x_j) \quad x_j \in I$$
         <ul>
             <li>$x_i =$ 2D interest point location</li>
             <li>$r_i =$ radius from $x_i$ within which $x_i$ has the highest strength</li>
             <li>$f(x_i) =$ strength of point $x_i$</li>
-            <li>$I =$ set of all interest point location</li>
+            <li>$I =$ set of all interest point locations</li>
             <li>$c_{\text{robust}} = 0.9$</li>
         </ul>
 
@@ -416,7 +417,7 @@
         <a class="anchor" id="descriptor"></a>
         <div class="subheader_left">Feature Descriptor Extraction</div>
 
-        <p>Once the strongest keypoints have been selected, among these, the points marking regions in common between the two images should be kept. To match common areas, features are first extracted. For each point, a $40 \times 40$ description of the local image around it is identified. This window is resized to be $8 \times 8$, normalized, and then flattened into a $64 \times 1$ descriptor vector. This is done for all 3 color channels, stacking them in the end.</p>
+        <p>Once the strongest keypoints have been selected, among these, the points marking regions in common between the two images are identified. To match common areas, features are first extracted. For each point, a $40 \times 40$ description of the local image around it is obtained. This window is resized to be $8 \times 8$, normalized, and then flattened into a $1 \times 64$ descriptor vector. This is done for all 3 color channels, stacking them in the end.</p>
 
         <table>
             <tr>
@@ -474,7 +475,7 @@
         <a class="anchor" id="ransac"></a>
         <div class="subheader_left">Random Sample Consensus (RANSAC)</div>
 
-        <p>Even after ANMS and feature-matching, there may still be outliers among the correspondence points. To further filter the keypoints, Random Sample Consensus (RANSAC) is implemented. At each step of RANSAC, $4$ random pairs of points are used to compute a homography $H$. For each pair of points $p, q$ ($p$ from <span class="code">to_warp</span> and $q$ from <span class="code">ref</span>), the SSD between $q$ and $Hp$ is computed. If this distance is within 2 pixels, the pair is kept. This is repeated for $10,000$ iterations which generates the maximum set of inliers. </p>
+        <p>Even after ANMS and feature-matching, there may still be outliers among the correspondence points. To further filter the keypoints, Random Sample Consensus (RANSAC) is implemented. At each step of RANSAC, $4$ random pairs of points are used to compute a homography $H$. For each pair of points $p, q$ ($p$ from <span class="code">to_warp</span> and $q$ from <span class="code">ref</span>), the SSD between $q$ and $Hp$ is computed. If this distance is within 2 pixels, the pair remains. This is repeated for $10,000$ iterations which generates the maximum set of inliers. </p>
 
         <table>
             <tr>
@@ -527,7 +528,7 @@
                 <td>
                     <div class="center">
                         <img src="images/mosaic/soda1_0.jpg" class="single-image"/> <br>
-                        <span><span class="code">soda0.jpg</span></span>
+                        <span><span class="code">soda1.jpg</span></span>
                     </div>
                 </td>
                 <td>
