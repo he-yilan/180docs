@@ -29,7 +29,7 @@
         <li><a href="#setup">5A: PART 0</a></li>
         <li><a href="#1114">5A: PART 1.1-1.4</a></li>
         <li><a href="#1516">5A: PART 1.5-1.6</a></li>
-        <li><a href="#1718">5A: PART 1.7-1.8</a></li>
+        <li><a href="#1718">5A: PART 1.7-1.9</a></li>
         <li><a href="#uncond">5B: PART 1</a></li>
     </ul>
 </div>
@@ -1019,6 +1019,55 @@
                     <div class="center">
                         <img src="images/A/anagram/pencil_coast_flip.png" class="single-image"/> <br>
                         <span>"a photo of <br> the amalfi cost"</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Part 1.9 Hybrid Images</h3>
+
+        <p>Hybrid images are images in which two scenes are overlaid, one which is visible when viewed up close, and the other which dominates when viewed from a distance. With the diffusion model, hybrid images can be created by using two different text prompts, and then combining low frequencies from one noise estimate with high frequencies of the other.</p>
+
+        $$ \epsilon_1 = \text{UNet}(x_t, t, p_1) $$
+
+        $$ \epsilon_2 = \text{UNet}(x_t, t, p_2) $$
+
+        $$ \epsilon = f_\text{lowpass}(\epsilon_1) + f_\text{highpass}(\epsilon_2)$$
+
+        <h4>Skull & Waterfall</h4>
+        <p>Text prompts: "a lithograph of a skull" and "a lithograph of waterfalls"</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/hybrid/skull_waterfall.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Man with a hat & People around a campfire</h4>
+        <p>Text prompts: "a man wearing a hat" and "an oil painting of people around a campfire"</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/hybrid/hat_campfire.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Man & Dog</h4>
+        <p>Text prompts: "a photo of a man" and "a photo of a dog"</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/hybrid/dog_man.png" class="single-image"/> <br>
                     </div>
                 </td>
             </tr>
