@@ -376,6 +376,65 @@
     <div class="content-item">
         <a class="anchor" id="1718"></a>
         <div class="subheader_left">5A: Part 1.7-1.8</div>
+
+        <h3>Part 1.7 Image-to-Image Translation</h3>
+
+        <p>Through iterative denoising, a noisy image is denoised, resulting in an output that roughly resembles the original. Following this concept, it is possible to make edits to existing images. By adding noise to an image and then denoising, the denoising procedure forces the noisy image back onto the manifold of natural images. As more noise is added, the resulting content is further removed from the initial input. </p>
+
+        <p>By using the <a href="https://sde-image-editing.github.io/">SDEdit</a> algorithm, a noised image is forced onto the image manifold without conditioning. As shown below, elements of the original content are preserved through the process, while with more being preserved at lower noise levels (higher <span class="code">i_start</span>). </p>
+
+        <h4>Campanile</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/campanile.png" class="single-image"/> <br>
+                        <span>original <span class="code">campanile.png</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i1.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 1</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i3.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 3</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i5.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 5</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i7.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 7</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i10.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 10</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/i20.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 20</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
     <br>
