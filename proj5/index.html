@@ -295,6 +295,41 @@
         <a class="anchor" id="1516"></a>
         <div class="subheader_left">5A: Part 1.5-1.6</div>
 
+        <h3>Part 1.5 Diffusion Model Sampling</h3>
+
+        <p>Beyond denoising a noisy image, <span class="code">iterative_denoise</span> can also generate images from scratch. By setting <span class="code">i_start=0</span> and passing in random noise, the function effectively denoises pur noise. Given the prompt "a high quality photo", the result is an image with fairly discernible content. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/sampling/1.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/sampling/2.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/sampling/3.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/sampling/4.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/sampling/5.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
