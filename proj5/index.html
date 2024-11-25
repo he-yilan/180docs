@@ -31,6 +31,7 @@
         <li><a href="#1516">5A: PART 1.5-1.6</a></li>
         <li><a href="#1718">5A: PART 1.7-1.9</a></li>
         <li><a href="#uncond">5B: PART 1</a></li>
+        <li><a href="#cond">5B: PART 2</a></li>
     </ul>
 </div>
 
@@ -1146,13 +1147,214 @@
                 </td>
             </tr>
         </table>
+
+        <p>The model is trained on images in the dataset with noise applied at <span class="code">noise_level = 0.5</span> for $5$ epochs and <span class="code">batch_size=256</span> . Adam optimizer with learning rate $= 1e-4$ is used.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/uncond_loss_curve_5epochs.png" class="single-image"/> <br>
+                        <span>training loss over $5$ epochs</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/uncond_training0.png" class="single-image"/> <br>
+                        <span>results after $0$ epochs</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/uncond_training4.png" class="single-image"/> <br>
+                        <span>results after $5$ epochs</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <p>The model is then evaluated on images from the testset noised to varying degrees.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl0.png" class="single-image"/> <br>
+                        <span>images with noise added at <span class="code">noise_level=0</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl0_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl02.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=0.2</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl02_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl04.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=0.4</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl04_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl05.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=0.5</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl05_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl06.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=0.6</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl06_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl08.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=0.8</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl08_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl10.png" class="single-image"/> <br>
+                        <span>images with noise added at <br> <span class="code">noise_level=1.0</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/uncond/test/nl10_denoised.png" class="single-image"/> <br>
+                        <span>denoised results</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
     <br>
 
     <div class="content-item">
-        <a class="anchor" id="timecond"></a>
+        <a class="anchor" id="cond"></a>
         <div class="subheader_left">5B: Part 2 Training a Diffusion Model</div>
+
+        <h3>2.1 Adding Time Conditioning to UNet</h3>
+
+        <p>To improve model performance, the UNet is conditioned with the timestep $t$. To inject $t$ into the UNet, FCBlocks are used. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond_arch.png" class="single-image"/> <br>
+                        <span>time-conditioned UNet</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <p>The following algorithm is implemented to train the UNet guided by $t$.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond/algo1_t_only.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        The model is trained with <span class="code">num_hiddens=64</span> and <span class="code">batch_size=128</span> for 20 epochs. The Adam optimizer is used with an initial learning rate of $1e-3$ with an exponential learning rate decay scheduler ($\gamma=0.1^{1 / \text{num_epochs}}$), taking one step every epoch.
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond/training_loss_20epochs.png" class="single-image"/> <br>
+                        <span>training loss over $20$ epochs</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond/epoch0.png" class="single-image"/> <br>
+                        <span>results after $0$ epochs</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond/epoch4.png" class="single-image"/> <br>
+                        <span>results after $5$ epochs</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/cond/epoch19.png" class="single-image"/> <br>
+                        <span>results after $20$ epochs</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
