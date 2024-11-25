@@ -699,6 +699,102 @@
             </tr>
         </table>
 
+        <h3>Part 1.7.2 Inpainting</h3>
+
+        <p>This procedure can be utilized to selectively modify sections of a given image, a technique called inpainting. Following the RePaint paper, inpainting is implemented. By applying a binary mask $m$ on an image $x_{\text{orig}}$, a new image is created with content from $x_{\text{orig}}$ where $m$ is 0 and new content where $m$ is 1. This is done by adding noise to the masked area and then isolating the denoising process there. Throughout the process, the unmasked $x_{\text{orig}}$ pixels are preserved by updating $x_t$ as follows:</p>
+
+        $$x_t := m x_t + (1 - m) \cdot \text{forward}(x_{\text{orig}}, t)$$
+
+        <h4>Campanile</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/campanile.png" class="single-image"/> <br>
+                        <span>original <span class="code">campanile.png</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/campanile_mask.png" class="single-image"/> <br>
+                        <span><span class="code">campanile_mask.png</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/campanile_toreplace.png" class="single-image"/> <br>
+                        <span>masked area to be replaced</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/campanile_inpainted.png" class="single-image"/> <br>
+                        <span>inpainted result</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Le Roy Avenue</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/leroy.jpg" class="single-image"/> <br>
+                        <span>original <span class="code">leroy.jpg</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/leroy_mask.png" class="single-image"/> <br>
+                        <span><span class="code">leroy_mask.png</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/leroy_toreplace.png" class="single-image"/> <br>
+                        <span>masked area to be replaced</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/leroy_inpainted.png" class="single-image"/> <br>
+                        <span>inpainted result</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Mazda MX-5</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/mx5_square.png" class="single-image"/> <br>
+                        <span>original <span class="code">mx5.png</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/mx5_mask.png" class="single-image"/> <br>
+                        <span><span class="code">mx5_mask.png</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/mx5_toreplace.png" class="single-image"/> <br>
+                        <span>masked area to be replaced</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/inpainting/mx5_inpainted.png" class="single-image"/> <br>
+                        <span>inpainted result</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
 
     </div>
 
