@@ -199,6 +199,91 @@
             </tr>
         </table>
 
+        <h3>Part 1.4 Iterative Denoising</h3>
+
+        <p>Because one-step denoising performs worse with added noise, this problem can be addressed by iteratively denoising. For each time step $t$, the function <span class="code">iterative_denoise</span> uses a UNet to estimate the amount of noise, and then denoises the image $x_t$ to generate the less noisy image $x_{t-1}$ at the previous timestep $t-1$. </p>
+
+        $$x_{t'} = \frac{\sqrt{\bar{\alpha}_{t'}}}{1 - \bar{\alpha}_t} x_0 + \frac{\sqrt{\bar{\alpha}_t} (1 - \alpha{t'})}{1 - \bar{\alpha}_t} x_t + v_{\sigma}$$
+        <ul>
+            <li>$x_t = $ image at timestep $t$</li>
+            <li>$x_{t'} =$ noisy image at timestep $t'$ where $t' < t$ (less noisy)</li>
+            <li>$\bar{\alpha}_t =$ noise coefficient </li>
+            <li>$\alpha_t = \bar{\alpha}_t / \bar{\alpha}_{t'}$</li>
+            <li>$\beta_t = 1 - \alpha_t$</li>
+            <li>$x_0 = $ current estimate of the clean image (generated from one-step denoising)</li>
+            <li>$v_{\sigma} =$ random noise calculated by the function <span class="code">add_variance</span></li>
+        </ul>
+
+        <p>While this is the general idea, it is not necessary to denoise at each timestep from $T$ to $0$. To skip steps, a list of timesteps <span class="code">strided_timesteps</span> is used which accelerates the process. This list is created starting at $990$ with a stride of $30$, eventually reaching $0$.</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/noisy_campanile.png" class="single-image"/> <br>
+                        <span>noisy <span class="code">campanile.png</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/campanile690.png" class="single-image"/> <br>
+                        <span><span class="code">t = 690</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/campanile540.png" class="single-image"/> <br>
+                        <span><span class="code">t = 540</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/campanile390.png" class="single-image"/> <br>
+                        <span><span class="code">t = 390</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/campanile240.png" class="single-image"/> <br>
+                        <span><span class="code">t = 240</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/campanile90.png" class="single-image"/> <br>
+                        <span><span class="code">t = 90</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/final_iterative_campanile.png" class="single-image"/> <br>
+                        <span>after iterative denoising</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/one_step_campanile.png" class="single-image"/> <br>
+                        <span>after one-step denoising</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/iterative/blurred_campanile.png" class="single-image"/> <br>
+                        <span>after Gaussian blur filtering</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
 
