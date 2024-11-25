@@ -26,11 +26,11 @@
 <div class="menu">
     <ul>
         <li><a href="#overview">OVERVIEW</a></li>
-        <li><a href="#setup">5A: Part 0</a></li>
-        <li><a href="#1114">5A: Part 1.1-1.4</a></li>
-        <li><a href="#1516">5A: Part 1.5-1.6</a></li>
-        <li><a href="#1718">5A: Part 1.7-1.8</a></li>
-        <li><a href="#uncond">5B: Part 1</a></li>
+        <li><a href="#setup">5A: PART 0</a></li>
+        <li><a href="#1114">5A: PART 1.1-1.4</a></li>
+        <li><a href="#1516">5A: PART 1.5-1.6</a></li>
+        <li><a href="#1718">5A: PART 1.7-1.8</a></li>
+        <li><a href="#uncond">5B: PART 1</a></li>
     </ul>
 </div>
 
@@ -46,13 +46,98 @@
     <br>
 
     <div class="content-item">
-        <a class="anchor" id="approach"></a>
-        <div class="subheader_left">Approach</div>
+        <a class="anchor" id="setup"></a>
+        <div class="subheader_left">5A: Part 0</div>
+
+        <p>I first experimented by running an existing trained stable diffusion model, DeepFloyd IF. Given a test prompt as input and using a random seed (I used $180$), the model accurately outputs an image that depicts the description. The images start off as white noise, and each step, the objects take form. As <span class="code">num_inference_steps</span> increases, the images become more complex and less noisy. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/part0/part0_1step.png" class="single-image"/> <br>
+                        <span><span class="code">num_inference_steps = 1</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/part0/part0_5steps.png" class="single-image"/> <br>
+                        <span><span class="code">num_inference_steps = 5</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/part0/part0_10steps.png" class="single-image"/> <br>
+                        <span><span class="code">num_inference_steps = 10</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/part0/part0_20steps.png" class="single-image"/> <br>
+                        <span><span class="code">num_inference_steps = 20</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="content-item">
+        <a class="anchor" id="1114"></a>
+        <div class="subheader_left">5A: Part 1.1-1.4</div>
+
+        <h3>Part 1.1 Forward process</h3>
+
+        <p>Diffusion involves taking in a noisy image and denoising it to produce a clean image. This process is difficult, but the reverse&ndash;adding noise to a clean image&ndash;is very simple. Therefore, the first part of this project is implementing the forward process using the following equation:</p>
+
+        $$x_t = \sqrt{\bar{\alpha}_t} x0 + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon \quad \text{where} \quad \epsilon \sim N(0, 1)$$
+        <ul>
+            <li>$x_0 =$ clean image</li>
+            <li>$x_t =$ noisy image at timestep $t$</li>
+            <li>$\bar{\alpha}_t =$ noise coefficient </li>
+            <li>$\epsilon =$ Gaussian noise</li>
+        </ul>
+
+        <p>Given the original image $x_0$ and timestep $t \in [0, T]$, the function <span class="code">forward</span> noises the image. The image at $t = 0$ is the original image, while at $t = T$, the image is pure noise. Thus, $\bar{\alpha}_t$ is close to 1 for small $t$ and close to $0$ for large $t$. </p>
+    </div>
+
+    <br>
+
+    <div class="content-item">
+        <a class="anchor" id="1516"></a>
+        <div class="subheader_left">5A: Part 1.5-1.6</div>
 
     </div>
 
     <br>
 
+    <div class="content-item">
+        <a class="anchor" id="1718"></a>
+        <div class="subheader_left">5A: Part 1.7-1.8</div>
+    </div>
+
+    <br>
+
+    <div class="content-item">
+        <a class="anchor" id="uncond"></a>
+        <div class="subheader_left">5B: Part 1 Training a Single-step Denoising UNet</div>
+    </div>
+
+    <br>
+
+    <div class="content-item">
+        <a class="anchor" id="timecond"></a>
+        <div class="subheader_left">5B: Part 2 Training a Diffusion Model</div>
+    </div>
+
+    <br>
 
 <br>
 
