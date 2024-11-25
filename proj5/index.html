@@ -795,6 +795,168 @@
             </tr>
         </table>
 
+        <h3>1.7.3 Text-Conditioned Image-to-image Translation</h3>
+
+        <p>Image-to-image translation can be used to modify the image randomly or it can be guided with a text prompt. As the noise level decreases (higher <span class="code">i_start</span>), the result resembles the original image more.</p>
+
+        <h4>Campanile & Rocket</h4>
+        <p>Text prompt: "a rocket ship"</p>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/campanile.png" class="single-image"/> <br>
+                        <span>original <span class="code">campanile.png</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i1.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 1</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i3.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 3</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i5.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 5</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i7.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 7</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i10.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 10</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/rocket_i20.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 20</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Self-portrait & Snowy mountains</h4>
+        <p>Text prompt: "an oil painting of a snowy mountain village"</p>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/elana.jpg" class="single-image"/> <br>
+                        <span>original <span class="code">elana.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i1.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 1</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i3.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 3</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i5.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 5</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i7.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 7</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i10.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 10</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/elana_snow_i20.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 20</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Luna (cat) & Dog</h4>
+        <p>Text prompt: "a photo of a dog"</p>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/luna.jpg" class="single-image"/> <br>
+                        <span>original <span class="code">luna.jpg</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i1.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 1</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i3.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 3</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i5.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 5</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i7.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 7</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i10.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 10</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/translation/text_cond/luna_dog_i20.png" class="single-image"/> <br>
+                        <span><span class="code">i_start = 20</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </div>
 
