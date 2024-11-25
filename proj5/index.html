@@ -299,6 +299,7 @@
 
         <p>Beyond denoising a noisy image, <span class="code">iterative_denoise</span> can also generate images from scratch. By setting <span class="code">i_start=0</span> and passing in random noise, the function effectively denoises pur noise. Given the prompt "a high quality photo", the result is an image with fairly discernible content. </p>
 
+        <h4>Generated images:</h4>
         <table>
             <tr>
                 <td>
@@ -330,6 +331,44 @@
                 </td>
             </tr>
         </table>
+
+        <h3>Part 1.6 Classifier Free Guidance</h3>
+
+        <p>To improve the image quality (though at the cost of image diversity), classifier-free guidance (CFG) is utilized. This technique involves computing both a text-conditioned noise estimate $\epsilon_c$ and an unconditional noise estimate $\epsilon_u$. Both $\epsilon_c$ and $\epsilon_u$ are then combined into the final noise estimate $\epsilon = \epsilon_u + \gamma (\epsilon_c - \epsilon_u)$ where $\gamma$ controls the strength of CFG. When $\gamma > 1$ the quality of the generated images are significantly improved. </p>
+
+        <h4>Generated images using $\gamma=7$:</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/cfg/1.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/cfg/2.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/cfg/3.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/cfg/4.png" class="single-image"/> <br>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/cfg/5.png" class="single-image"/> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
     <br>
