@@ -1041,7 +1041,7 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/A/hybrid/skull_waterfall.png" class="single-image"/> <br>
+                        <img src="images/A/hybrid/skull_waterfall.png" class="single-image"/>
                     </div>
                 </td>
             </tr>
@@ -1054,7 +1054,7 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/A/hybrid/hat_campfire.png" class="single-image"/> <br>
+                        <img src="images/A/hybrid/hat_campfire.png" class="single-image"/>
                     </div>
                 </td>
             </tr>
@@ -1067,7 +1067,7 @@
             <tr>
                 <td>
                     <div class="center">
-                        <img src="images/A/hybrid/dog_man.png" class="single-image"/> <br>
+                        <img src="images/A/hybrid/dog_man.png" class="single-image"/>
                     </div>
                 </td>
             </tr>
@@ -1081,6 +1081,71 @@
     <div class="content-item">
         <a class="anchor" id="uncond"></a>
         <div class="subheader_left">5B: Part 1 Training a Single-step Denoising UNet</div>
+
+        <h3>Part 1.1 Implementing the UNet</h3>
+        <p>First, the simple and composed operations of the UNet were implemented. </p>
+        <ul>
+            <li>Simple operations: <span class="code">Conv</span>,  <span class="code">UpConv</span>, <span class="code">Flatten</span>,  <span class="code">Unflatten</span></li>
+            <li>Composed operations: <span class="code">ConvBlock</span>,  <span class="code">DownBlock</span>,  <span class="code">UpBlock</span></li>
+        </ul>
+
+        <p>These operations were then used to construct the following architecture:</p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/unet_arch.png" class="single-image"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Part 1.2 Using the UNet to Train a Denoiser</h3>
+
+        <p>The UNet is trained using the MNIST dataset to denoise and produce images of handwritten digits. For each image in the dataset, noise can be added to varying degrees depending on the noise coefficient $\in [0, 1.0]$. At level $0$, the result is the original image, and the result is pure noise at $1.0$. Thus, as this coefficient increases, so does the amount of noise added. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl0.png" class="single-image"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl02.png" class="single-image"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl04.png" class="single-image"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl05.png" class="single-image"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl06.png" class="single-image"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl08.png" class="single-image"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/B/noise/nl10.png" class="single-image"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <br>
