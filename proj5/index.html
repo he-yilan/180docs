@@ -106,6 +106,68 @@
         </ul>
 
         <p>Given the original image $x_0$ and timestep $t \in [0, T]$, the function <span class="code">forward</span> noises the image. The image at $t = 0$ is the original image, while at $t = T$, the image is pure noise. Thus, $\bar{\alpha}_t$ is close to 1 for small $t$ and close to $0$ for large $t$. </p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/data/campanile.png" class="single-image"/> <br>
+                        <span><span class="code">campanile.png</span></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/forward/campanile250.png" class="single-image"/> <br>
+                        <span><span class="code">t = 250</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/forward/campanile500.png" class="single-image"/> <br>
+                        <span><span class="code">t = 250</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/forward/campanile750.png" class="single-image"/> <br>
+                        <span><span class="code">t = 750</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Part 1.2 Classical Denoising</h3>
+
+        <p>In order to recover the original image, one option is to apply Gaussian blur filtering to remove noise. This was done using the function <span class="code">torchvision.transforms.functional.gaussian_blur</span></p>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/gaussian_denoise/gaussian250.png" class="single-image"/> <br>
+                        <span>blurred <span class="code">t = 250</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/gaussian_denoise/gaussian500.png" class="single-image"/> <br>
+                        <span>blurred <span class="code">t = 250</span></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/gaussian_denoise/gaussian750.png" class="single-image"/> <br>
+                        <span>blurred <span class="code">t = 750</span></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h3></h3>
+
     </div>
 
     <br>
