@@ -958,6 +958,73 @@
             </tr>
         </table>
 
+        <h3>Part 1.8 Visual Anagrams</h3>
+
+        <p>Using these tools, visual anagrams can be created. Visual anagrams are optical illusions in which one scene is shown in an image ("an oil painting of people around a campfire"), but when the image is flipped upside down, a different scene is shown ("an oil painting of an old man"). </p>
+
+        <p>To create this effect, the denoising process is used. At step $t$, $x_t$ is denoised as normal, guided by the prompt $p_1$ "an oil painting of people around a campfire" to obtain estimate $\epsilon_1$. Then, $x_t$ is flipped and denoised with the second prompt $p_2$ "an oil painting of people around a campfire" to produce $\epsilon_2$. To make it right-side up, $\epsilon_2$ is flipped again, and the two noise estimates are averaged. </p>
+
+        $$ \epsilon_1 = \text{UNet}(x_t, t, p_1) $$
+
+        $$ \epsilon_2 = \text{flip}(\text{UNet}(\text{flip}(x_t), t, p_2))$$
+
+        $$ \epsilon = (\epsilon_1 + \epsilon_2) / 2 $$
+
+        <h4>Old Man & Campfire</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/man_campfire.png" class="single-image"/> <br>
+                        <span>"an oil painting of <br> an old man"</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/man_campfire_flip.png" class="single-image"/> <br>
+                        <span>"an oil painting of <br> people around a campfire"</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Barista & Waterfalls</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/barista_waterfalls.png" class="single-image"/> <br>
+                        <span>"a photo of <br> a hipster barista"</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/barista_waterfalls_flip.png" class="single-image"/> <br>
+                        <span>"a lithograph of <br> waterfalls"</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Pencil & Amalfi Coast</h4>
+        <table>
+            <tr>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/pencil_coast.png" class="single-image"/> <br>
+                        <span>"a pencil"</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img src="images/A/anagram/pencil_coast_flip.png" class="single-image"/> <br>
+                        <span>"a photo of <br> the amalfi cost"</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
     </div>
 
     <br>
